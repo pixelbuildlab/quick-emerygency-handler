@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2111111111111111" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/edit_text_border.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/frame_layout_bg.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/red_gradient.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/red_gradient_color.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/search_view_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/shape_approved_rect.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/shape_blocked_rect.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/shape_pending_rect.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/single_spinner_item.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/spinner_bg.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/drawable/users_card_background.xml" value="0.20462962962962963" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_all_rides.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_complaints.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.175" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_login.xml" value="0.16203703703703703" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_notifications.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_settings.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_confirm_booking.xml" value="0.17407407407407408" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_active_ride.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_completed_rides.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_dashboard.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_detail.xml" value="0.1" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_notification_detail.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_notifications.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_reviews.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_end_ride.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_login.xml" value="0.15185185185185185" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_manage_drivers.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_manage_patients.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_nearby_ambulances.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_dashboard.xml" value="0.1675925925925926" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_detail.xml" value="0.25" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_history.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_registration1.xml" value="0.2" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_registration2.xml" value="0.18796296296296297" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_select_location.xml" value="0.25" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_user_active_ride.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/activity_user_review.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/bottom_sheet_login_screen.xml" value="0.1685185185185185" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/edit_text_border.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_admin_notifications_rv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_all_rides_admin.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_completed_rides.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_notifications_lv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_reviews_lv.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_admin_complaints.xml" value="0.25" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_patient_history.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_drivers.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_patients_recycler.xml" value="0.2" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/single_item_nearby_ambulance.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rajaa/Desktop/Mohsin/AndroidStudio Projects/AmbulanceBookingApp/app/src/main/res/layout/spinner_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_all_rides.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_complaints.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_notifications.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_admin_settings.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_confirm_booking.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_active_ride.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_completed_rides.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_detail.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_notification_detail.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_notifications.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_reviews.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_end_ride.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_manage_drivers.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_manage_patients.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_nearby_ambulances.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_detail.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_history.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_profile.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_registration1.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_registration2.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_select_location.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_user_active_ride.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/activity_user_review.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/bottom_sheet_login_screen.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_admin_notifications_rv.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_all_rides_admin.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_completed_rides.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_notifications_lv.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_admin_complaints.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_patient_history.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_drivers.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_patients_recycler.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/single_item_nearby_ambulance.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingApp/app/src/main/res/layout/spinner_item.xml" value="0.358695652173913" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_confirm_booking.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_active_ride.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_completed_rides.xml" value="0.3067708333333333" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_dashboard.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_driver_detail.xml" value="0.22" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_end_ride.xml" value="0.3067708333333333" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_manage_drivers.xml" value="0.20677083333333332" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_nearby_ambulances.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_patient_dashboard.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_registration1.xml" value="0.25" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_registration2.xml" value="0.25" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_select_location.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.3569230769230769" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_user_active_ride.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/activity_user_review.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/bottom_sheet_login_screen.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_admin_notifications_rv.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_notifications_lv.xml" value="0.20677083333333332" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_driver_reviews_lv.xml" value="0.20677083333333332" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_admin_complaints.xml" value="0.20677083333333332" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_patient_history.xml" value="0.3625" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_drivers.xml" value="0.20677083333333332" />
+        <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_nearby_ambulance.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminScreens.AdminSettingsActivity">
+
+    <ProgressBar
+        android:id="@+id/progressAdminSettings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/dark_red"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/applySettingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/dark_red"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/driversHeading"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:gravity="center_vertical|center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/firstSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Base Fare"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/baseFareET"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter in rupees"
+            android:backgroundTint="@color/dark_red"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstSettings"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1.3"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Per KM Fare"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:textColor="@color/black"
+            android:id="@+id/perKmET"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter in rupees"
+            android:backgroundTint="@color/dark_red"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/applySettingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/white"
+        android:background="@drawable/red_gradient"
+        android:layout_marginHorizontal="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/secondLayout"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

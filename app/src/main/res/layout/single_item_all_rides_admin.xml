@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/statusIvAllRidesAdminSingle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dot"
+            android:layout_weight="1.8"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_weight="0.2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userIdAllRidesAdminSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="25"
+                android:paddingHorizontal="3dp"
+                android:text="UserID: "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/driverIdAllRidesAdminSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="3dp"
+                android:maxLength="25"
+                android:text="DriverID: "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/dateAllRidesAdminSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/costAllRidesAdminSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cost: "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/statusAllRidesAdminSingle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status: "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

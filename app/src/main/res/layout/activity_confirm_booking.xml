@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSideScreens.ConfirmBookingActivity">
+
+    <ProgressBar
+        android:id="@+id/confirmBookingProgressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/dark_red"
+        android:visibility="invisible"
+        android:indeterminate="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/confirmBookingButton" />
+
+    <LinearLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/dark_red"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/driversHeading"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Confirm Booking"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:gravity="center_vertical|center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/mapFragmentConfirmBooking"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:cardCornerRadius="16dp"
+        android:elevation="10dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cancelButton"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:orientation="vertical"
+            android:background="@drawable/red_gradient">
+
+            <TextView
+                android:id="@+id/estimatedCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Estimated Cost:"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+            <TextView
+                android:id="@+id/vehicleNumberConfirm"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Number:"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+            <ImageView
+                android:id="@+id/callConfirm"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_weight="2"
+                android:src="@drawable/telephone"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact Driver"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:padding="4dp"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="15dp"
+        android:background="@drawable/red_gradient"
+        android:text="Cancel"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toBottomOf="@id/cardView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/confirmBookingButton"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/confirmBookingButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm Booking"
+        android:layout_marginVertical="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/red_gradient"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.quickemergencyhandler">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AmbulanceBookingApp">
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminComplaintsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverReviewsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.UserReviewActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.PatientHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.UserActiveRideActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminAllRidesActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.PatientProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverCompletedRidesActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.EndRideActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverActiveRideActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverNotificationDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverNotificationsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.ConfirmBookingActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminSettingsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminNotificationsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.PatientDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.DriverDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.NearbyAmbulancesActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyByVdzDd2TZwqXqFxfoJRPgJJJviizwGdM" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.SelectLocationActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.DriverDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.ManageDriversActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.PatientDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.ManagePatientsActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminDashboard"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.AdminScreens.AdminLogin"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.RegistrationActivity2"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.RegistrationActivity1"
+            android:exported="true" />
+        <activity
+            android:name="com.example.quickemergencyhandler.UserSideScreens.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.example.quickemergencyhandler.notification_services.AdminNotification"
+            android:exported="true" />
+        <service
+            android:name="com.example.quickemergencyhandler.notification_services.UserNotification"
+            android:exported="true" />
+        <service
+            android:name="com.example.quickemergencyhandler.notification_services.DriverNotification"
+            android:exported="true" />
+    </application>
+
+</manifest>

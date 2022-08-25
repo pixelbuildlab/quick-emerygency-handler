@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254435422656",
+    "project_id": "quickemergencyhandler",
+    "storage_bucket": "quickemergencyhandler.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254435422656:android:0680611a8e150611bb9825",
+        "android_client_info": {
+          "package_name": "com.example.ambulancebookingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254435422656-vtf86f595pvn1j7ta3jee22he661mmrk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-gJDEWhbGMEkKOy2X1YuZyYjfN_jbo14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254435422656-vtf86f595pvn1j7ta3jee22he661mmrk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
