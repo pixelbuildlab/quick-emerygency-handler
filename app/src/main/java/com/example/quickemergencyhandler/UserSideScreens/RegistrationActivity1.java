@@ -215,7 +215,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(RegistrationActivity1.this, "Please Verify your email to continue.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity1.this, "Please Login to continue", Toast.LENGTH_LONG).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

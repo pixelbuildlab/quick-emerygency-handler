@@ -166,13 +166,17 @@ public class LoginActivity extends AppCompatActivity {
 
                                             //show message
                                             Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
                                         }
                                     });
                                 } else {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     loginButton.setVisibility(View.VISIBLE);
                                     getHelp.setVisibility(View.VISIBLE);
+
                                     Toast.makeText(LoginActivity.this, "Please verify email to continue", Toast.LENGTH_SHORT).show();
+                                    Intent intent= new Intent(LoginActivity.this, VerifyEmailActivity.class);
+                                    startActivity(intent);
                                 }
                             }
                         }

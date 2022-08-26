@@ -178,6 +178,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
                                                                 firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
                                                                 sendVerifyEmail();
                                                                 finishAffinity();
+                                                                Toast.makeText(RegistrationActivity2.this, "Please Login to continue.", Toast.LENGTH_SHORT).show();
                                                                 startActivity(new Intent(RegistrationActivity2.this, LoginActivity.class));
 
                                                             }

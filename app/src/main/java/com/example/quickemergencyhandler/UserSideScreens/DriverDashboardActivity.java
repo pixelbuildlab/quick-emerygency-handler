@@ -40,7 +40,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 
 public class DriverDashboardActivity extends AppCompatActivity {
-
     ImageView logoutButton;
     SwitchCompat locationSwitch;
     private boolean showLocation;
@@ -145,7 +144,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(DriverDashboardActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
                     Toast.makeText(getApplicationContext(), "Provide the permissions to continue", Toast.LENGTH_SHORT).show();
-                    return;
+                   // return;
                 }
 
                 //check for gps
@@ -197,8 +196,10 @@ public class DriverDashboardActivity extends AppCompatActivity {
                 editor.putInt(userType, 0);
                 editor.putString(userNodeKey, "empty");
                 editor.apply();
+                auth.signOut();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
+
                 stopService(i);
             }
         });

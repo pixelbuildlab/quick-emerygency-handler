@@ -125,6 +125,9 @@
         <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_lv_patient_history.xml" value="0.3625" />
         <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_manage_drivers.xml" value="0.20677083333333332" />
         <entry key="..\:/fyp/AmbulanceBookingAppok/AmbulanceBookingApp/app/src/main/res/layout/single_item_nearby_ambulance.xml" value="0.3625" />
+        <entry key="..\:/fyp/quick-emerygency-handler-master/app/src/main/res/layout/activity_forgot_password.xml" value="0.35052083333333334" />
+        <entry key="..\:/fyp/quick-emerygency-handler-master/app/src/main/res/layout/activity_login.xml" value="0.35052083333333334" />
+        <entry key="..\:/fyp/quick-emerygency-handler-master/app/src/main/res/layout/activity_verify_email.xml" value="0.35052083333333334" />
       </map>
     </option>
   </component>
