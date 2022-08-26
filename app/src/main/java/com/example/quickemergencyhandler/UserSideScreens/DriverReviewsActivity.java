@@ -50,12 +50,9 @@ public class DriverReviewsActivity extends AppCompatActivity {
         firebaseFirestore.collection("Rating").whereEqualTo("driverID", driverID).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             History history = new History();
 
                             //get rating stars and comment
@@ -69,8 +66,7 @@ public class DriverReviewsActivity extends AppCompatActivity {
                             firebaseFirestore.collection("Booking").document(snapshot.get("bookingID").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
-                                    if(task.isSuccessful())
-                                    {
+                                    if (task.isSuccessful()) {
                                         DocumentSnapshot snapshot1 = task1.getResult();
                                         date = snapshot1.get("date").toString();
                                         time = snapshot1.get("time").toString();
@@ -85,8 +81,7 @@ public class DriverReviewsActivity extends AppCompatActivity {
                                         firebaseFirestore.collection("users").document(userID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                if(task.isSuccessful())
-                                                {
+                                                if (task.isSuccessful()) {
                                                     DocumentSnapshot snapshot2 = task.getResult();
                                                     userName = snapshot2.get("name").toString();
                                                     history.setUserName(userName);
@@ -102,9 +97,7 @@ public class DriverReviewsActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "You have no reviews yet", Toast.LENGTH_SHORT).show();
                     }
                 }

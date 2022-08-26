@@ -56,12 +56,9 @@ public class PatientHistoryActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 progressBar.setVisibility(View.INVISIBLE);
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             bookingID = snapshot.get("bookingID").toString();
                             userID = snapshot.get("userID").toString();
                             driverID = snapshot.get("driverID").toString();
@@ -69,13 +66,11 @@ public class PatientHistoryActivity extends AppCompatActivity {
                             date = snapshot.get("date").toString();
                             cost = Integer.parseInt(snapshot.get("cost").toString());
 
-                            if(status.equals("completed"))
-                            {
+                            if (status.equals("completed")) {
 
                                 Booking booking = new Booking(bookingID, userID, driverID, 0.0, 0.0, status, date, "", 0.0, 0.0, cost);
                                 items.add(booking);
-                            }
-                            else if (status.equals("pending")){
+                            } else if (status.equals("pending")) {
 
                                 Booking booking = new Booking(bookingID, userID, driverID, 0.0, 0.0, status, date, "", 0.0, 0.0, 0);
                                 items.add(booking);
@@ -86,22 +81,19 @@ public class PatientHistoryActivity extends AppCompatActivity {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                if (Objects.equals(items.get(i).getStatus(), "completed")){
-                                Intent intent = new Intent(PatientHistoryActivity.this, UserReviewActivity.class);
-                                intent.putExtra("bookingID", items.get(i).getBookingID());
-                                intent.putExtra("userID", items.get(i).getUserID());
-                                intent.putExtra("driverID", items.get(i).getDriverID());
-                                startActivity(intent);
-                            }
-                                else{
+                                if (Objects.equals(items.get(i).getStatus(), "completed")) {
+                                    Intent intent = new Intent(PatientHistoryActivity.this, UserReviewActivity.class);
+                                    intent.putExtra("bookingID", items.get(i).getBookingID());
+                                    intent.putExtra("userID", items.get(i).getUserID());
+                                    intent.putExtra("driverID", items.get(i).getDriverID());
+                                    startActivity(intent);
+                                } else {
                                     Toast.makeText(PatientHistoryActivity.this, "You can review after booking completion", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                         });
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "You have no completed rides", Toast.LENGTH_LONG).show();
                     }
                 }

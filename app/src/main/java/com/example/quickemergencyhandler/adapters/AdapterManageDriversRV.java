@@ -43,15 +43,13 @@ public class AdapterManageDriversRV extends RecyclerView.Adapter<AdapterManageDr
         holder.image.setImageResource(R.drawable.ic_baseline_person_24);
         holder.name.setText(items.get(position).getName().toString());
         holder.phoneNo.setText(items.get(position).getPhoneNo().toString());
-        if (items.get(position).getStatus().equals("approved")){
+        if (items.get(position).getStatus().equals("approved")) {
             holder.status.setBackgroundResource(R.drawable.shape_approved_rect);
             holder.status.setText(items.get(position).getStatus());
-        }
-        else if (items.get(position).getStatus().equals("blocked")){
+        } else if (items.get(position).getStatus().equals("blocked")) {
             holder.status.setBackgroundResource(R.drawable.shape_blocked_rect);
             holder.status.setText(items.get(position).getStatus());
-        }
-        else {
+        } else {
             holder.status.setBackgroundResource(R.drawable.shape_pending_rect);
             holder.status.setText(items.get(position).getStatus());
         }
@@ -69,7 +67,6 @@ public class AdapterManageDriversRV extends RecyclerView.Adapter<AdapterManageDr
         LinearLayout parentLayout;
 
 
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.imageViewManageDriversSingleItem);
@@ -84,8 +81,7 @@ public class AdapterManageDriversRV extends RecyclerView.Adapter<AdapterManageDr
 
         @Override
         public void onClick(View view) {
-            switch (view.getId())
-            {
+            switch (view.getId()) {
                 case R.id.parentLayoutD:
                     listener.onItemClick(getAdapterPosition());
                     break;

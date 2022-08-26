@@ -163,7 +163,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             //hide the progress bar
-                                                            if (task.isSuccessful()){
+                                                            if (task.isSuccessful()) {
                                                                 progressBar.setVisibility(View.INVISIBLE);
                                                                 registerVehicleButton.setVisibility(View.VISIBLE);
 
@@ -228,7 +228,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
                 Objects.requireNonNull(auth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(RegistrationActivity2.this, "Please Verify your email to continue.", Toast.LENGTH_LONG).show();
                         }
                     }

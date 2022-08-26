@@ -18,8 +18,7 @@ public class AdapterLvDCompletedRides extends BaseAdapter {
     private ArrayList<Booking> items;
     private static LayoutInflater inflater = null;
 
-    public AdapterLvDCompletedRides(Context context, ArrayList<Booking> items)
-    {
+    public AdapterLvDCompletedRides(Context context, ArrayList<Booking> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context
@@ -57,7 +56,7 @@ public class AdapterLvDCompletedRides extends BaseAdapter {
         dateTV.setText("Date: " + items.get(i).getDate());
         timeTV.setText("Time: " + items.get(i).getTime());
         costTV.setText("Cost: Rs." + items.get(i).getCost());
-        countTV.setText(String.valueOf(i+1));
+        countTV.setText(String.valueOf(i + 1));
 
         return vi;
     }

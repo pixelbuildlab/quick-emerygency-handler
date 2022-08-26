@@ -48,8 +48,7 @@ public class PatientProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 progressBar.setVisibility(View.INVISIBLE);
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
                     String name = snapshot.get("name").toString();
                     String email = snapshot.get("email").toString();

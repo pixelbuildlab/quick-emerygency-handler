@@ -62,13 +62,12 @@ public class AdminSettingsActivity extends AppCompatActivity {
                 applyButton.setVisibility(View.INVISIBLE);
 
                 //get values
-                String base,per;
+                String base, per;
                 base = baseFareET.getText().toString();
                 per = perKmET.getText().toString();
 
                 //validate values
-                if(base.trim().equals("") || per.trim().equals(""))
-                {
+                if (base.trim().equals("") || per.trim().equals("")) {
                     //hide the progress bar
                     progressBar.setVisibility(View.INVISIBLE);
                     applyButton.setVisibility(View.VISIBLE);
@@ -83,8 +82,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
                 firebaseFirestore.collection("Admin").document("Admin").set(adminModel1).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             //hide the progress bar
                             progressBar.setVisibility(View.INVISIBLE);
                             applyButton.setVisibility(View.VISIBLE);

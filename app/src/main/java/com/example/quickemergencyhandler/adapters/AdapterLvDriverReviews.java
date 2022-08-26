@@ -21,8 +21,7 @@ public class AdapterLvDriverReviews extends BaseAdapter {
     private static LayoutInflater inflater = null;
     FirebaseFirestore firebaseFirestore;
 
-    public AdapterLvDriverReviews(Context context, ArrayList<History> items)
-    {
+    public AdapterLvDriverReviews(Context context, ArrayList<History> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context

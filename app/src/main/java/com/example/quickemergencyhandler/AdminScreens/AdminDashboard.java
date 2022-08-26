@@ -59,7 +59,7 @@ public class AdminDashboard extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
 
-        i = new Intent(getApplicationContext(),AdminNotification.class);
+        i = new Intent(getApplicationContext(), AdminNotification.class);
         startService(i);
 
         getTotalAndPendingUsers();
@@ -131,18 +131,14 @@ public class AdminDashboard extends AppCompatActivity {
 
     }
 
-    private void getTotalAndPendingUsers()
-    {
+    private void getTotalAndPendingUsers() {
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    for(QueryDocumentSnapshot snapshot : task.getResult())
-                    {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot snapshot : task.getResult()) {
                         totalUsers++;
-                        if(snapshot.get("status").toString().equals("pending"))
-                        {
+                        if (snapshot.get("status").toString().equals("pending")) {
                             pendingUsers++;
                         }
                     }
@@ -158,21 +154,17 @@ public class AdminDashboard extends AppCompatActivity {
         });
     }
 
-    private void getNotificationsCount()
-    {
+    private void getNotificationsCount() {
         firebaseFirestore.collection("notifications").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    for(QueryDocumentSnapshot snapshot : task.getResult())
-                    {
-                        if(snapshot.get("isRead").toString().equals("0"))
-                        {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot snapshot : task.getResult()) {
+                        if (snapshot.get("isRead").toString().equals("0")) {
                             notificationsCount++;
                         }
                     }
-                    System.out.println("***************** "+ notificationsCount);
+                    System.out.println("***************** " + notificationsCount);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

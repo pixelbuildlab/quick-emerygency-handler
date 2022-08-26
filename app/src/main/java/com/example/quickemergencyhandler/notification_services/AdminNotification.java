@@ -59,12 +59,10 @@ public class AdminNotification extends Service {
         firebaseFirestore.collection("notifications").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for(DocumentSnapshot snapshot : task.getResult())
-                {
-                    if(snapshot.get("to").toString().equals("admin") && Integer.parseInt(snapshot.get("isRead").toString()) == 3)
-                    {
+                for (DocumentSnapshot snapshot : task.getResult()) {
+                    if (snapshot.get("to").toString().equals("admin") && Integer.parseInt(snapshot.get("isRead").toString()) == 3) {
                         notificationID++;
-                        adminNotification(snapshot.get("title").toString(), snapshot.get("subTitle").toString(),notificationID);
+                        adminNotification(snapshot.get("title").toString(), snapshot.get("subTitle").toString(), notificationID);
                         String id = snapshot.get("notificationID").toString();
                         NotificationModel replaceModel = new NotificationModel(
                                 snapshot.get("notificationID").toString(),
@@ -83,7 +81,7 @@ public class AdminNotification extends Service {
         });
 
         return START_NOT_STICKY;
-}
+    }
 
     public void adminNotification(String title, String subTitle, int notificationID) {
         Intent mainIntent = new Intent(getApplicationContext(), AdminNotificationsActivity.class);

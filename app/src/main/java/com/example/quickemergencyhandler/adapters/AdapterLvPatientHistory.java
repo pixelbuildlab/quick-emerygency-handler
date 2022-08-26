@@ -25,8 +25,7 @@ public class AdapterLvPatientHistory extends BaseAdapter {
     private static LayoutInflater inflater = null;
     FirebaseFirestore firebaseFirestore;
 
-    public AdapterLvPatientHistory(Context context, ArrayList<Booking> items)
-    {
+    public AdapterLvPatientHistory(Context context, ArrayList<Booking> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context
@@ -66,8 +65,7 @@ public class AdapterLvPatientHistory extends BaseAdapter {
         firebaseFirestore.collection("users").document(items.get(i).getDriverID()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
                     String driverName = snapshot.get("name").toString();
                     name.setText("Driver Name: " + driverName);

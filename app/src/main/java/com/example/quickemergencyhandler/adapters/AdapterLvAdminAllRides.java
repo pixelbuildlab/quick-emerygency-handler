@@ -22,8 +22,7 @@ public class AdapterLvAdminAllRides extends BaseAdapter {
     private ArrayList<Booking> items;
     private static LayoutInflater inflater = null;
 
-    public AdapterLvAdminAllRides(Context context, ArrayList<Booking> items)
-    {
+    public AdapterLvAdminAllRides(Context context, ArrayList<Booking> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context
@@ -68,23 +67,16 @@ public class AdapterLvAdminAllRides extends BaseAdapter {
         date.setText("Date: " + items.get(i).getDate());
         cost.setText("Cost: " + items.get(i).getCost());
 
-        if(items.get(i).getStatus().equals("pending"))
-        {
+        if (items.get(i).getStatus().equals("pending")) {
             statusImage.setColorFilter(ContextCompat.getColor(context, R.color.g_yellow),
                     PorterDuff.Mode.MULTIPLY);
-        }
-        else if(items.get(i).getStatus().equals("accepted"))
-        {
+        } else if (items.get(i).getStatus().equals("accepted")) {
             statusImage.setColorFilter(ContextCompat.getColor(context, R.color.g_blue),
                     PorterDuff.Mode.MULTIPLY);
-        }
-        else if(items.get(i).getStatus().equals("completed"))
-        {
+        } else if (items.get(i).getStatus().equals("completed")) {
             statusImage.setColorFilter(ContextCompat.getColor(context, R.color.g_green),
                     PorterDuff.Mode.MULTIPLY);
-        }
-        else
-        {
+        } else {
             statusImage.setColorFilter(ContextCompat.getColor(context, R.color.dark_red),
                     PorterDuff.Mode.MULTIPLY);
         }

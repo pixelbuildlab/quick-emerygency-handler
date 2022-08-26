@@ -60,8 +60,7 @@ public class ManageDriversActivity extends AppCompatActivity {
     }
 
 
-    public void fetchData(Context ctx)
-    {
+    public void fetchData(Context ctx) {
         //show the progress bar
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
@@ -75,10 +74,8 @@ public class ManageDriversActivity extends AppCompatActivity {
                 //hide the progress bar
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.VISIBLE);
-                if(task.isSuccessful())
-                {
-                    for(QueryDocumentSnapshot document : task.getResult())
-                    {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
                         id = document.get("id").toString();
                         name = document.get("name").toString();
                         email = document.get("email").toString();
@@ -95,7 +92,7 @@ public class ManageDriversActivity extends AppCompatActivity {
                         lat = Double.parseDouble(document.get("lat").toString());
                         lng = Double.parseDouble(document.get("lng").toString());
                         available = Boolean.parseBoolean(document.get("available").toString());
-                        items.add(new DriverModel(id ,name, email, cnic, phone, imageUrl, status, vehicleNumber, vehicleCopyNumber, vehicleModel, features, userType, lat, lng, available));
+                        items.add(new DriverModel(id, name, email, cnic, phone, imageUrl, status, vehicleNumber, vehicleCopyNumber, vehicleModel, features, userType, lat, lng, available));
                     }
 
                     adapter = new AdapterManageDriversRV(items, getApplicationContext(), new IManagePatientClickListener() {

@@ -51,8 +51,7 @@ public class ManagePatientsActivity extends AppCompatActivity {
         fetchData(getApplicationContext());
     }
 
-    public void fetchData(Context ctx)
-    {
+    public void fetchData(Context ctx) {
         //show the progress bar
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
@@ -68,10 +67,8 @@ public class ManagePatientsActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 recyclerView.setVisibility(View.VISIBLE);
 
-                if(task.isSuccessful())
-                {
-                    for(QueryDocumentSnapshot document : task.getResult())
-                    {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
                         id = document.get("id").toString();
                         name = document.get("name").toString();
                         email = document.get("email").toString();
@@ -79,7 +76,7 @@ public class ManagePatientsActivity extends AppCompatActivity {
                         phone = document.get("phoneNo").toString();
                         status = document.get("status").toString();
                         userType = document.get("userType").toString();
-                        items.add(new PatientModel(id ,name, email, cnic, phone, status, userType, 0, 0, 0));
+                        items.add(new PatientModel(id, name, email, cnic, phone, status, userType, 0, 0, 0));
                     }
 
                     adapter = new AdapterManagePatientsRecycler(items, getApplicationContext(), new IManagePatientClickListener() {

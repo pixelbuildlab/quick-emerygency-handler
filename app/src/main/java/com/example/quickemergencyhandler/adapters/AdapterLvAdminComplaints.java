@@ -18,8 +18,7 @@ public class AdapterLvAdminComplaints extends BaseAdapter {
     private ArrayList<Rating> items;
     private static LayoutInflater inflater = null;
 
-    public AdapterLvAdminComplaints(Context context, ArrayList<Rating> items)
-    {
+    public AdapterLvAdminComplaints(Context context, ArrayList<Rating> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context

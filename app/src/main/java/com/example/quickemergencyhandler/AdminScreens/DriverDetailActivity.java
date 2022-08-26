@@ -60,7 +60,7 @@ public class DriverDetailActivity extends AppCompatActivity {
         ambulanceNoTV = findViewById(R.id.ambulanceNoTVDDetails);
         ambulanceCopyNoTV = findViewById(R.id.ambulanceCopyNumberTVDDetails);
         ambulanceModelTV = findViewById(R.id.ambulanceModelTVDDetails);
-        ambulancefeatures=findViewById(R.id.ambulanceFeaturesList);
+        ambulancefeatures = findViewById(R.id.ambulanceFeaturesList);
         updateStatusButton = findViewById(R.id.updateStatusButtonTVDDetails);
         ambulanceImage = findViewById(R.id.ambulanceImage);
         progressBar = findViewById(R.id.progressbarManageDDetails);
@@ -98,7 +98,6 @@ public class DriverDetailActivity extends AppCompatActivity {
         available = intent.getBooleanExtra("available", false);
 
 
-
         //set data to views
         nameTV.setText(name);
         emailTV.setText(email);
@@ -110,19 +109,14 @@ public class DriverDetailActivity extends AppCompatActivity {
         ambulancefeatures.setText(getFeature());
         Picasso.get().load(imageUrl).into(ambulanceImage);
 
-        if(status.equals("blocked"))
-        {
-            statusTV.setText("Status:  "+status);
+        if (status.equals("blocked")) {
+            statusTV.setText("Status:  " + status);
             statusTV.setTextColor(getResources().getColor(R.color.dark_red));
-        }
-        else if(status.equals("approved"))
-        {
-            statusTV.setText("Status:  "+status);
+        } else if (status.equals("approved")) {
+            statusTV.setText("Status:  " + status);
             statusTV.setTextColor(getResources().getColor(R.color.g_green));
-        }
-        else
-        {
-            statusTV.setText("Status:  "+status);
+        } else {
+            statusTV.setText("Status:  " + status);
             statusTV.setTextColor(getResources().getColor(R.color.g_yellow));
         }
 
@@ -133,8 +127,7 @@ public class DriverDetailActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 updateStatusButton.setVisibility(View.INVISIBLE);
 
-                if(!spinnerValidation())
-                {
+                if (!spinnerValidation()) {
                     //hide the progress bar
                     progressBar.setVisibility(View.INVISIBLE);
                     updateStatusButton.setVisibility(View.VISIBLE);
@@ -142,8 +135,7 @@ public class DriverDetailActivity extends AppCompatActivity {
                     return;
                 }
                 String selectedSpinnerItem = changeStatusSpinner.getSelectedItem().toString().toLowerCase(Locale.ROOT);
-                if(selectedSpinnerItem.equals(status))
-                {
+                if (selectedSpinnerItem.equals(status)) {
                     //hide the progress bar
                     progressBar.setVisibility(View.INVISIBLE);
                     updateStatusButton.setVisibility(View.VISIBLE);
@@ -151,18 +143,16 @@ public class DriverDetailActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This status is already applied", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(selectedSpinnerItem.equals("blocked"))
-                {
+                if (selectedSpinnerItem.equals("blocked")) {
                     driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "blocked", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, false);
 
                     databaseReference.document(id).set(driverModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 //change local status
                                 status = "blocked";
-                                statusTV.setText("Status:  "+status);
+                                statusTV.setText("Status:  " + status);
                                 statusTV.setTextColor(getResources().getColor(R.color.g_red));
 
                                 //hide the progress bar
@@ -184,19 +174,16 @@ public class DriverDetailActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else if(selectedSpinnerItem.equals("approved"))
-                {
+                } else if (selectedSpinnerItem.equals("approved")) {
                     driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "approved", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, available);
 
                     databaseReference.document(id).set(driverModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 //change local status
                                 status = "approved";
-                                statusTV.setText("Status:  "+status);
+                                statusTV.setText("Status:  " + status);
                                 statusTV.setTextColor(getResources().getColor(R.color.g_green));
 
                                 //hide the progress bar
@@ -218,19 +205,16 @@ public class DriverDetailActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else
-                {
+                } else {
                     driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "pending", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, false);
 
                     databaseReference.document(id).set(driverModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 //change local status
                                 status = "pending";
-                                statusTV.setText("Status:  "+status);
+                                statusTV.setText("Status:  " + status);
                                 statusTV.setTextColor(getResources().getColor(R.color.g_yellow));
 
                                 //hide the progress bar
@@ -258,36 +242,31 @@ public class DriverDetailActivity extends AppCompatActivity {
 
     }
 
-    private boolean spinnerValidation()
-    {
+    private boolean spinnerValidation() {
         String selectedSpinnerItem = changeStatusSpinner.getSelectedItem().toString();
-        if(selectedSpinnerItem == "Select Status")
-        {
+        if (selectedSpinnerItem == "Select Status") {
             return false;
         }
         return true;
     }
 
     public String getFeature() {
-        String f= " ";
+        String f = " ";
         for (int i = 0; i < features.size(); i++) {
 
-            if (String.valueOf(features.get(i)).equals("1")){
-                f="Stretcher";
-        }
-            else if (String.valueOf(features.get(i)).equals("2")){
-                f=f+"  Drip";
-            }
-            else if (String.valueOf(features.get(i)).equals("3"))
-            {
-                f=f+" Oxygen Mask";
-            }
-            else if (String.valueOf(features.get(i)).equals("4")){
-                f=f+" Nurse ";
+            if (String.valueOf(features.get(i)).equals("1")) {
+                f = "Stretcher";
+            } else if (String.valueOf(features.get(i)).equals("2")) {
+                f = f + "  Drip";
+            } else if (String.valueOf(features.get(i)).equals("3")) {
+                f = f + " Oxygen Mask";
+            } else if (String.valueOf(features.get(i)).equals("4")) {
+                f = f + " Nurse ";
             }
 
-    }
+        }
         Log.d("mylogs", String.valueOf(features.size()));
-        return  f;
-}}
+        return f;
+    }
+}
 

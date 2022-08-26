@@ -93,7 +93,7 @@ public class DriverNotificationDetailActivity extends FragmentActivity implement
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 String uniqueID = UUID.randomUUID().toString();
-                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride request was accepted by " + driverName , "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
+                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride request was accepted by " + driverName, "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
                 firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
             }
         });
@@ -112,19 +112,17 @@ public class DriverNotificationDetailActivity extends FragmentActivity implement
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 String uniqueID = UUID.randomUUID().toString();
-                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride request was rejected by " + driverName , "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
+                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride request was rejected by " + driverName, "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
                 firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
             }
         });
     }
 
-    private void fetchDriverName()
-    {
+    private void fetchDriverName() {
         firebaseFirestore.collection("users").document(driverID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
                     driverName = snapshot.get("name").toString();
                 }
@@ -132,13 +130,11 @@ public class DriverNotificationDetailActivity extends FragmentActivity implement
         });
     }
 
-    private void fetchAndSetDataToViews(String userID)
-    {
+    private void fetchAndSetDataToViews(String userID) {
         firebaseFirestore.collection("users").document(userID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
                     String name = snapshot.get("name").toString();
                     nameTV.setText("Name: " + name);

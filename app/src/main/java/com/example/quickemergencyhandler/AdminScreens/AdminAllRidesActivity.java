@@ -45,12 +45,9 @@ public class AdminAllRidesActivity extends AppCompatActivity {
         firebaseFirestore.collection("Booking").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             userID = snapshot.get("userID").toString();
                             driverID = snapshot.get("driverID").toString();
                             date = snapshot.get("date").toString();
@@ -62,9 +59,7 @@ public class AdminAllRidesActivity extends AppCompatActivity {
                         }
                         adapter = new AdapterLvAdminAllRides(getApplicationContext(), bookings);
                         listView.setAdapter(adapter);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "There are no rides yet in the database", Toast.LENGTH_SHORT).show();
                     }
                 }

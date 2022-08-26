@@ -93,7 +93,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         supportMapFragment.getMapAsync(this);
 
         confirmBookingButton = findViewById(R.id.confirmBookingButton);
-        cancelButton=findViewById(R.id.cancelButton);
+        cancelButton = findViewById(R.id.cancelButton);
         estimatedCostTV = findViewById(R.id.estimatedCost);
         vehicleNoTV = findViewById(R.id.vehicleNumberConfirm);
         callNowButton = findViewById(R.id.callConfirm);
@@ -126,7 +126,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             @Override
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:"+phoneNo));
+                callIntent.setData(Uri.parse("tel:" + phoneNo));
                 startActivity(callIntent);
             }
         });
@@ -142,8 +142,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
                 firebaseFirestore.collection("Booking").document(uniqueID).set(booking).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Ride request submitted, wait for the driver", Toast.LENGTH_LONG).show();
 
                             //send notification to table
@@ -175,19 +174,17 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home=new Intent(ConfirmBookingActivity.this, PatientDashboardActivity.class);
+                Intent home = new Intent(ConfirmBookingActivity.this, PatientDashboardActivity.class);
                 startActivity(home);
             }
         });
     }
 
-    private void getCurrentUserName()
-    {
+    private void getCurrentUserName() {
         firebaseFirestore.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
                     currentUserName = snapshot.get("name").toString();
                 }
@@ -196,8 +193,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
     }
 
 
-    private void getFareValues()
-    {
+    private void getFareValues() {
         firebaseFirestore.collection("Admin").document("Admin").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -207,11 +203,11 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
                 perKmFare = Integer.parseInt(snapshot.get("perKmFare").toString());
                 Log.d("Mylogs, perKMfare", String.valueOf(perKmFare));
 
-                estimatedCost = (int) ((distanceInKm*perKmFare)+baseFare);
+                estimatedCost = (int) ((distanceInKm * perKmFare) + baseFare);
                 Log.d("Mylogs, distanceInKM", String.valueOf(distanceInKm));
 
                 Log.d("Mylogs, estimated", String.valueOf(estimatedCost));
-                int valueWithoutBaseFare = (int) (distanceInKm*perKmFare);
+                int valueWithoutBaseFare = (int) (distanceInKm * perKmFare);
                 int finalValue = valueWithoutBaseFare + baseFare;
                 Log.d("Mylogs, valuewithoutbaseFare", String.valueOf(valueWithoutBaseFare));
                 Log.d("Mylogs, finalValue", String.valueOf(finalValue));
@@ -247,7 +243,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         drawRoute();
     }
 
-    private void drawRoute(){
+    private void drawRoute() {
 
         // Getting URL to the Google Directions API
         String url = getDirectionsUrl(mOrigin, mDestination);
@@ -258,25 +254,25 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         downloadTask.execute(url);
     }
 
-    private String getDirectionsUrl(LatLng origin,LatLng dest){
+    private String getDirectionsUrl(LatLng origin, LatLng dest) {
 
         // Origin of route
-        String str_origin = "origin="+origin.latitude+","+origin.longitude;
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
 
         // Destination of route
-        String str_dest = "destination="+dest.latitude+","+dest.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
 
         // Key
         String key = "key=AIzaSyByVdzDd2TZwqXqFxfoJRPgJJJviizwGdM";
 
         // Building the parameters to the web service
-        String parameters = str_origin+"&"+str_dest+"&"+key;
+        String parameters = str_origin + "&" + str_dest + "&" + key;
 
         // Output format
         String output = "json";
 
         // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
         return url;
     }
@@ -285,7 +281,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
-        try{
+        try {
             URL url = new URL(strUrl);
 
             // Creating an http connection to communicate with url
@@ -299,10 +295,10 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
 
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
 
-            StringBuffer sb  = new StringBuffer();
+            StringBuffer sb = new StringBuffer();
 
             String line = "";
-            while( ( line = br.readLine())  != null){
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
 
@@ -310,9 +306,9 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
 
             br.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("Exception on download", e.toString());
-        }finally{
+        } finally {
             iStream.close();
             urlConnection.disconnect();
         }
@@ -328,12 +324,12 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             // For storing data from web service
             String data = "";
 
-            try{
+            try {
                 // Fetching the data from web service
                 data = downloadUrl(url[0]);
-                Log.d("DownloadTask","DownloadTask : " + data);
-            }catch(Exception e){
-                Log.d("Background Task",e.toString());
+                Log.d("DownloadTask", "DownloadTask : " + data);
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
             }
             return data;
         }
@@ -351,7 +347,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         }
     }
 
-    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> >{
+    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
         // Parsing the data in non-ui thread
         @Override
@@ -360,13 +356,13 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             JSONObject jObject;
             List<List<HashMap<String, String>>> routes = null;
 
-            try{
+            try {
                 jObject = new JSONObject(jsonData[0]);
                 DirectionsJSONParser parser = new DirectionsJSONParser();
 
                 // Starts parsing data
                 routes = parser.parse(jObject);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return routes;
@@ -379,7 +375,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             PolylineOptions lineOptions = null;
 
             // Traversing through all the routes
-            for(int i=0;i<result.size();i++){
+            for (int i = 0; i < result.size(); i++) {
                 points = new ArrayList<LatLng>();
                 lineOptions = new PolylineOptions();
 
@@ -387,8 +383,8 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
                 List<HashMap<String, String>> path = result.get(i);
 
                 // Fetching all the points in i-th route
-                for(int j=0;j<path.size();j++){
-                    HashMap<String,String> point = path.get(j);
+                for (int j = 0; j < path.size(); j++) {
+                    HashMap<String, String> point = path.get(j);
 
                     double lat = Double.parseDouble(point.get("lat"));
                     double lng = Double.parseDouble(point.get("lng"));
@@ -404,14 +400,14 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             }
 
             // Drawing polyline in the Google Map for the i-th route
-            if(lineOptions != null) {
-                if(mPolyline != null){
+            if (lineOptions != null) {
+                if (mPolyline != null) {
                     mPolyline.remove();
                 }
                 mPolyline = googleMap.addPolyline(lineOptions);
 
-            }else
-                Toast.makeText(getApplicationContext(),"No route is found", Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(getApplicationContext(), "No route is found", Toast.LENGTH_LONG).show();
         }
     }
 }

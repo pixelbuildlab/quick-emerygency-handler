@@ -45,12 +45,9 @@ public class DriverNotificationsActivity extends AppCompatActivity {
         firebaseFirestore.collection("Booking").whereEqualTo("status", "pending").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             id = snapshot.get("bookingID").toString();
                             userID = snapshot.get("userID").toString();
                             driverID = snapshot.get("driverID").toString();
@@ -81,9 +78,7 @@ public class DriverNotificationsActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "You have no notifications currently", Toast.LENGTH_LONG).show();
                     }
                 }

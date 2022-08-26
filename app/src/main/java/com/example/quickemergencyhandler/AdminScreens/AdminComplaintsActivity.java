@@ -39,13 +39,10 @@ public class AdminComplaintsActivity extends AppCompatActivity {
         firebaseFirestore.collection("Rating").whereLessThan("rating", 2.6).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
                         String userID, driverID, reason;
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             userID = snapshot.get("userID").toString();
                             driverID = snapshot.get("driverID").toString();
                             reason = snapshot.get("comment").toString();
@@ -54,9 +51,7 @@ public class AdminComplaintsActivity extends AppCompatActivity {
                         }
                         adapter = new AdapterLvAdminComplaints(getApplicationContext(), items);
                         listView.setAdapter(adapter);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "There are no complaints yet", Toast.LENGTH_SHORT).show();
                     }
                 }

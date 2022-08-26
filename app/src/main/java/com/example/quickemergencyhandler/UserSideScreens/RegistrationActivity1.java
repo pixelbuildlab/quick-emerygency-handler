@@ -81,12 +81,9 @@ public class RegistrationActivity1 extends AppCompatActivity {
         showPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(passwordEditText.getTransformationMethod() == HideReturnsTransformationMethod.getInstance())
-                {
+                if (passwordEditText.getTransformationMethod() == HideReturnsTransformationMethod.getInstance()) {
                     passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-                else
-                {
+                } else {
                     passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
             }
@@ -130,10 +127,8 @@ public class RegistrationActivity1 extends AppCompatActivity {
                 //check the user type
                 //if user type is driver then move to 2nd registration screen
                 //else move to main screen
-                if(validation)
-                {
-                    if(userType.equals("driver"))
-                    {
+                if (validation) {
+                    if (userType.equals("driver")) {
                         Intent intent = new Intent(RegistrationActivity1.this, RegistrationActivity2.class);
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
@@ -147,9 +142,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
                         loginInsteadTextView.setVisibility(View.VISIBLE);
 
                         startActivity(intent);
-                    }
-                    else if(userType.equals("patient"))
-                    {
+                    } else if (userType.equals("patient")) {
                         auth.createUserWithEmailAndPassword(email, password).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
@@ -162,14 +155,13 @@ public class RegistrationActivity1 extends AppCompatActivity {
                         }).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful())
-                                {
+                                if (task.isSuccessful()) {
                                     //create record in database
-                                    PatientModel patientModel = new PatientModel(auth.getCurrentUser().getUid().toString() ,name, email, cnic, phone, "approved", "patient", 1, 0, 0);
+                                    PatientModel patientModel = new PatientModel(auth.getCurrentUser().getUid().toString(), name, email, cnic, phone, "approved", "patient", 1, 0, 0);
                                     firebaseFirestore.collection("users").document(auth.getCurrentUser().getUid()).set(patientModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 //hide the progress bar
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 registerButton.setVisibility(View.VISIBLE);
@@ -199,7 +191,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
                                             progressBar.setVisibility(View.INVISIBLE);
                                             registerButton.setVisibility(View.VISIBLE);
                                             loginInsteadTextView.setVisibility(View.VISIBLE);
-                                            Toast.makeText(getApplicationContext(), "User not created in database "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "User not created in database " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
@@ -207,9 +199,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
                         });
                     }
 
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), "Check all input fields", Toast.LENGTH_SHORT).show();
                     //hide the progress bar
                     progressBar.setVisibility(View.INVISIBLE);
@@ -224,7 +214,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
         Objects.requireNonNull(auth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(RegistrationActivity1.this, "Please Verify your email to continue.", Toast.LENGTH_LONG).show();
                 }
             }
@@ -240,24 +230,18 @@ public class RegistrationActivity1 extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode)
-        {
-            case PERMISSION_CODE:
-            {
-                if(grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED)
-                {
+        switch (requestCode) {
+            case PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
                     pickImageFromGallery();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getApplicationContext(), "Permission Denied..", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
 
-    public void pickImageFromGallery()
-    {
+    public void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
@@ -272,46 +256,38 @@ public class RegistrationActivity1 extends AppCompatActivity {
 //        }
 //    }
 
-    private boolean inputValidation()
-    {
+    private boolean inputValidation() {
         name = nameEditText.getText().toString();
         email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
         phone = phoneEditText.getText().toString();
         cnic = cnicEditText.getText().toString();
 
-        if(name.isEmpty() || name.length()<5)
-        {
+        if (name.isEmpty() || name.length() < 5) {
             nameEditText.setError("Name too short");
             nameEditText.requestFocus();
             return false;
         }
-        if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
-        {
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Provide a correct email");
             emailEditText.requestFocus();
             return false;
         }
-        if(password.isEmpty() || password.length()<6)
-        {
+        if (password.isEmpty() || password.length() < 6) {
             passwordEditText.setError("At least 6 characters required");
             passwordEditText.requestFocus();
             return false;
         }
-        if(phone.isEmpty() || phone.length()<11)
-        {
+        if (phone.isEmpty() || phone.length() < 11) {
             phoneEditText.setError("Phone number not correct");
             phoneEditText.requestFocus();
             return false;
         }
-        if(cnic.isEmpty() || cnic.length()<13)
-        {
+        if (cnic.isEmpty() || cnic.length() < 13) {
             cnicEditText.setError("CNIC not correct");
             cnicEditText.requestFocus();
             return false;
-        }
-        else if( cnic.length()>13)
-        {
+        } else if (cnic.length() > 13) {
             cnicEditText.setError("Provide 13 Digit CNIC without dashes");
             cnicEditText.requestFocus();
             return false;

@@ -63,7 +63,7 @@ public class SelectLocationActivity extends FragmentActivity implements OnMapRea
         searchView = findViewById(R.id.searchView);
         nextButton = (Button) findViewById(R.id.nextButton);
         currentLocationButton = (Button) findViewById(R.id.currentLocationButton);
-        selectedLatLng = new LatLng(0,0);
+        selectedLatLng = new LatLng(0, 0);
 
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
         supportMapFragment.getMapAsync(this);
@@ -81,27 +81,21 @@ public class SelectLocationActivity extends FragmentActivity implements OnMapRea
             public boolean onQueryTextSubmit(String s) {
                 mMap.clear();
                 String location = searchView.getQuery().toString();
-                List<Address> addresses =null;
-                if(location!=null || !location.trim().equals(""))
-                {
+                List<Address> addresses = null;
+                if (location != null || !location.trim().equals("")) {
                     Geocoder geocoder = new Geocoder(SelectLocationActivity.this);
                     try {
                         addresses = geocoder.getFromLocationName(location, 1);
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if(addresses.size()>0)
-                    {
+                    if (addresses.size() > 0) {
                         Address address = addresses.get(0);
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         mMap.addMarker(new MarkerOptions().position(latLng).title("Selected Location").draggable(true));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         selectedLatLng = new LatLng(latLng.latitude, latLng.longitude);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Location not found", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -118,12 +112,9 @@ public class SelectLocationActivity extends FragmentActivity implements OnMapRea
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SelectLocationActivity.this, NearbyAmbulancesActivity.class);
-                if(selectedLatLng.latitude == 0.0 || selectedLatLng.longitude == 0.0)
-                {
+                if (selectedLatLng.latitude == 0.0 || selectedLatLng.longitude == 0.0) {
                     Toast.makeText(getApplicationContext(), "Select a pickup location first from tapping on the map or choosing current location", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     intent.putExtra("lat", selectedLatLng.latitude);
                     intent.putExtra("lng", selectedLatLng.longitude);
                     startActivity(intent);
@@ -139,22 +130,18 @@ public class SelectLocationActivity extends FragmentActivity implements OnMapRea
                     ActivityCompat.requestPermissions(SelectLocationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
                     Toast.makeText(getApplicationContext(), "Provide the permissions to continue", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                else if(!checkGPS())
-                {
+                } else if (!checkGPS()) {
                     buildAlertMessageNoGps();
                     return;
-                }
-                else {
+                } else {
                     //get current location of user
                     LocationServices.getFusedLocationProviderClient(SelectLocationActivity.this).requestLocationUpdates(locationRequest, new LocationCallback() {
                         @Override
                         public void onLocationResult(@NonNull LocationResult locationResult) {
                             super.onLocationResult(locationResult);
                             LocationServices.getFusedLocationProviderClient(SelectLocationActivity.this).removeLocationUpdates(this);
-                            if(locationResult != null && locationResult.getLocations().size() > 0)
-                            {
-                                int index = locationResult.getLocations().size()-1;
+                            if (locationResult != null && locationResult.getLocations().size() > 0) {
+                                int index = locationResult.getLocations().size() - 1;
                                 currentLatitude = locationResult.getLocations().get(index).getLatitude();
                                 currentLongitude = locationResult.getLocations().get(index).getLongitude();
 
@@ -206,15 +193,11 @@ public class SelectLocationActivity extends FragmentActivity implements OnMapRea
         }
     }
 
-    public boolean checkGPS()
-    {
+    public boolean checkGPS() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             return false;
-        }
-        else
-        {
+        } else {
             return true;
         }
     }

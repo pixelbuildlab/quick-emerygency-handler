@@ -70,7 +70,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-public class DriverActiveRideActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+public class DriverActiveRideActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
@@ -87,7 +87,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
     FirebaseAuth firebaseAuth;
 
     double userLat, userLng, driverLat, driverLng;
-    Date d1,d2;
+    Date d1, d2;
     private String fetchedBookingID, fetchedUserID, fetchedDriverID, fetchedStatus, fetchedDate, fetchedTime;
     private double fetchedUserLat, fetchedUserLng, fetchedDriverLat, fetchedDriverLng;
     int cost;
@@ -122,7 +122,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         parentCard = (CardView) findViewById(R.id.mainCardDriverActiveRide);
         nameTV = findViewById(R.id.nameActiveRideD);
         dateTV = findViewById(R.id.dateActiveRideD);
-        cancelButton=findViewById(R.id.returnHome1);
+        cancelButton = findViewById(R.id.returnHome1);
         endRideButton = findViewById(R.id.endRideButton);
         mMarkerPoints = new ArrayList<>();
         noRideTV.setVisibility(View.INVISIBLE);
@@ -150,7 +150,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(DriverActiveRideActivity.this, DriverDashboardActivity.class);
+                Intent intent = new Intent(DriverActiveRideActivity.this, DriverDashboardActivity.class);
                 finishAffinity();
                 startActivity(intent);
             }
@@ -171,12 +171,9 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         firebaseFirestore.collection("Booking").whereEqualTo("status", "accepted").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             String fetchedDate = snapshot.get("date").toString();
                             try {
                                 d2 = dateFormat.parse(fetchedDate);
@@ -184,12 +181,11 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
                                 e.printStackTrace();
                             }
 
-                            if(d1.compareTo(d2) == 0 &&
+                            if (d1.compareTo(d2) == 0 &&
                                     FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("driverID").toString())
                                     &&
                                     snapshot.get("status").toString().equals("accepted")
-                            )
-                            {
+                            ) {
                                 System.out.println("IN CONDITION");
                                 fetchedBookingID = snapshot.get("bookingID").toString();
                                 fetchedUserID = snapshot.get("userID").toString();
@@ -213,10 +209,8 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
                                 firebaseFirestore.collection("users").whereEqualTo("id", fetchedUserID).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        if(task.isSuccessful())
-                                        {
-                                            for(DocumentSnapshot snapshot1 : task.getResult())
-                                            {
+                                        if (task.isSuccessful()) {
+                                            for (DocumentSnapshot snapshot1 : task.getResult()) {
                                                 nameTV.setText("Name: " + snapshot1.get("name").toString());
                                                 dateTV.setText("Contact No: " + snapshot1.get("phoneNo").toString());
                                             }
@@ -228,18 +222,14 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
                                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                            }
-                            else
-                            {
+                            } else {
                                 //if no bookings are there
                                 noRideTV.setVisibility(View.VISIBLE);
                                 mapFragment.getView().setVisibility(View.INVISIBLE);
                                 parentCard.setVisibility(View.INVISIBLE);
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         //if no bookings are there
                         noRideTV.setVisibility(View.VISIBLE);
                         mapFragment.getView().setVisibility(View.INVISIBLE);
@@ -360,16 +350,13 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         sendDriverLatLng(getLat, getLng);
     }
 
-    private void sendDriverLatLng(double lat, double lng)
-    {
+    private void sendDriverLatLng(double lat, double lng) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         firebaseFirestore.collection("Booking").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    for(DocumentSnapshot snapshot : task.getResult())
-                    {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot snapshot : task.getResult()) {
                         String fetchedDate = snapshot.get("date").toString();
                         try {
                             d2 = dateFormat.parse(fetchedDate);
@@ -377,14 +364,13 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
                             e.printStackTrace();
                         }
 
-                        if(d1.compareTo(d2) == 0 &&
+                        if (d1.compareTo(d2) == 0 &&
                                 FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("driverID").toString())
                                 &&
                                 snapshot.get("status").toString().equals("accepted")
-                        )
-                        {
+                        ) {
 
-                            System.out.println("location driver updating: "+ lat+" "+lng);
+                            System.out.println("location driver updating: " + lat + " " + lng);
                             fetchedBookingID = snapshot.get("bookingID").toString();
                             fetchedUserID = snapshot.get("userID").toString();
                             fetchedDriverID = snapshot.get("driverID").toString();
@@ -406,16 +392,14 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
 
                             //if distance is less than 10 meters
                             notiCounter++;
-                            if(distanceInKm < 10)
-                            {
-                                if(notiCounter == 1)
-                                {
+                            if (distanceInKm < 10) {
+                                if (notiCounter == 1) {
                                     Toast.makeText(getApplicationContext(), "You have arrived", Toast.LENGTH_LONG).show();
                                     //send notification to table
                                     String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                                     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                                     String uniqueID = UUID.randomUUID().toString();
-                                    NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), fetchedUserID, "Ambulance has arrived at your location" , "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
+                                    NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), fetchedUserID, "Ambulance has arrived at your location", "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
                                     firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
                                 }
                             }
@@ -432,7 +416,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
     }
 
     //**********************************functions for drawing route***************************************
-    private void drawRoute(){
+    private void drawRoute() {
 
         // Getting URL to the Google Directions API
         String url = getDirectionsUrl(mOrigin, mDestination);
@@ -443,25 +427,25 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         downloadTask.execute(url);
     }
 
-    private String getDirectionsUrl(LatLng origin,LatLng dest){
+    private String getDirectionsUrl(LatLng origin, LatLng dest) {
 
         // Origin of route
-        String str_origin = "origin="+origin.latitude+","+origin.longitude;
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
 
         // Destination of route
-        String str_dest = "destination="+dest.latitude+","+dest.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
 
         // Key
         String key = "key=AIzaSyByVdzDd2TZwqXqFxfoJRPgJJJviizwGdM";
 
         // Building the parameters to the web service
-        String parameters = str_origin+"&"+str_dest+"&"+key;
+        String parameters = str_origin + "&" + str_dest + "&" + key;
 
         // Output format
         String output = "json";
 
         // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
         return url;
     }
@@ -470,7 +454,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
-        try{
+        try {
             URL url = new URL(strUrl);
 
             // Creating an http connection to communicate with url
@@ -484,10 +468,10 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
 
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
 
-            StringBuffer sb  = new StringBuffer();
+            StringBuffer sb = new StringBuffer();
 
             String line = "";
-            while( ( line = br.readLine())  != null){
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
 
@@ -495,9 +479,9 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
 
             br.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("Exception on download", e.toString());
-        }finally{
+        } finally {
             iStream.close();
             urlConnection.disconnect();
         }
@@ -513,12 +497,12 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
             // For storing data from web service
             String data = "";
 
-            try{
+            try {
                 // Fetching the data from web service
                 data = downloadUrl(url[0]);
-                Log.d("DownloadTask","DownloadTask : " + data);
-            }catch(Exception e){
-                Log.d("Background Task",e.toString());
+                Log.d("DownloadTask", "DownloadTask : " + data);
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
             }
             return data;
         }
@@ -536,7 +520,7 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         }
     }
 
-    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> > {
+    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
         // Parsing the data in non-ui thread
         @Override

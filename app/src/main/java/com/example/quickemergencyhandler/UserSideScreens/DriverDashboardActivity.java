@@ -62,7 +62,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     int REQUEST_CODE = 1;
     private int PERMISSION_CODE = 1;
-    
+
     //firebase variables
     FirebaseAuth auth;
     FirebaseFirestore firebaseFirestore;
@@ -71,7 +71,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_dashboard);
-        
+
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -147,10 +147,9 @@ public class DriverDashboardActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Provide the permissions to continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                
+
                 //check for gps
-                if(!checkGPS())
-                {
+                if (!checkGPS()) {
                     buildAlertMessageNoGps();
                     return;
                 }
@@ -161,9 +160,8 @@ public class DriverDashboardActivity extends AppCompatActivity {
                     public void onLocationResult(@NonNull LocationResult locationResult) {
                         super.onLocationResult(locationResult);
                         LocationServices.getFusedLocationProviderClient(DriverDashboardActivity.this).removeLocationUpdates(this);
-                        if(locationResult.getLocations().size() > 0)
-                        {
-                            int index = locationResult.getLocations().size()-1;
+                        if (locationResult.getLocations().size() > 0) {
+                            int index = locationResult.getLocations().size() - 1;
                             currentLatitude = locationResult.getLocations().get(index).getLatitude();
                             currentLongitude = locationResult.getLocations().get(index).getLongitude();
 
@@ -177,8 +175,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
                             firebaseFirestore.collection("users").document(userKey).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful())
-                                    {
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), "Status updated", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -219,8 +216,7 @@ public class DriverDashboardActivity extends AppCompatActivity {
         }
     }
 
-    public boolean checkGPS()
-    {
+    public boolean checkGPS() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
@@ -238,20 +234,15 @@ public class DriverDashboardActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private void setCurrentSwitchStatusOfUser()
-    {
+    private void setCurrentSwitchStatusOfUser() {
         firebaseFirestore.collection("users").document(auth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot snapshot = task.getResult();
-                    if(snapshot.get("available").toString().equals("true"))
-                    {
+                    if (snapshot.get("available").toString().equals("true")) {
                         locationSwitch.setChecked(true);
-                    }
-                    else
-                    {
+                    } else {
                         locationSwitch.setChecked(false);
                     }
                 }

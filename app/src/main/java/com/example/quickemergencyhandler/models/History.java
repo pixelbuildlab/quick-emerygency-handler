@@ -8,8 +8,7 @@ public class History {
     private float ratingValue;
     private String comment;
 
-    public History()
-    {
+    public History() {
 
     }
 

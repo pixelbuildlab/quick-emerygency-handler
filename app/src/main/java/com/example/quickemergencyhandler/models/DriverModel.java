@@ -141,13 +141,11 @@ public class DriverModel {
         this.vehicleFeatures = vehicleFeatures;
     }
 
-    public String getUserType()
-    {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType)
-    {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

@@ -52,7 +52,7 @@ public class PatientDashboardActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(PatientDashboardActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
             Toast.makeText(getApplicationContext(), "Provide the permissions to continue", Toast.LENGTH_SHORT).show();
-          //  return;
+            //  return;
         }
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -124,32 +124,23 @@ public class PatientDashboardActivity extends AppCompatActivity {
                 firebaseFirestore.collection("Booking").whereEqualTo("userID", currentUserKey).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             boolean rideFound = false;
 
-                            if(task.getResult().size() == 0)
-                            {
+                            if (task.getResult().size() == 0) {
                                 Intent intent = new Intent(PatientDashboardActivity.this, SelectLocationActivity.class);
                                 startActivity(intent);
-                            }
-                            else
-                            {
-                                for(DocumentSnapshot snapshot : task.getResult())
-                                {
-                                    if(!snapshot.get("status").toString().equals("completed") && !snapshot.get("status").toString().equals("rejected"))
-                                    {
+                            } else {
+                                for (DocumentSnapshot snapshot : task.getResult()) {
+                                    if (!snapshot.get("status").toString().equals("completed") && !snapshot.get("status").toString().equals("rejected")) {
                                         rideFound = true;
                                     }
                                 }
                             }
 
-                            if(rideFound)
-                            {
+                            if (rideFound) {
                                 Toast.makeText(getApplicationContext(), "You have already a ride ongoing", Toast.LENGTH_LONG).show();
-                            }
-                            else
-                            {
+                            } else {
                                 Intent intent = new Intent(PatientDashboardActivity.this, SelectLocationActivity.class);
                                 startActivity(intent);
                             }

@@ -33,7 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class LoginActivity extends AppCompatActivity {
 
     //creating variables
-    TextView registerTextView, loginAsAdminTextView, forgotPasswordTextView;
+    TextView registerTextView, loginAsAdminTextView, getHelp;
     Button loginButton;
     ImageView showPasswordButton, helpButton;
     EditText emailEditText, passwordEditText;
@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         emailEditText = findViewById(R.id.emailEditTextL);
         passwordEditText = findViewById(R.id.passwordEditTextL);
-        forgotPasswordTextView = findViewById(R.id.forgotPassword);
+        getHelp = findViewById(R.id.getHelp);
         progressBar = findViewById(R.id.LoginProgressBar);
         showPasswordButton = findViewById(R.id.showPasswordLoginScreen);
         helpButton = findViewById(R.id.helpL);
@@ -74,12 +74,9 @@ public class LoginActivity extends AppCompatActivity {
         showPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(passwordEditText.getTransformationMethod() == HideReturnsTransformationMethod.getInstance())
-                {
+                if (passwordEditText.getTransformationMethod() == HideReturnsTransformationMethod.getInstance()) {
                     passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-                else
-                {
+                } else {
                     passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
             }
@@ -106,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 progressBar.setVisibility(View.VISIBLE);
                 loginButton.setVisibility(View.INVISIBLE);
-                forgotPasswordTextView.setVisibility(View.INVISIBLE);
+                getHelp.setVisibility(View.INVISIBLE);
 
                 //extract the input from edit texts and validate it
                 boolean validation = extractInputAndValidate();
@@ -115,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                if (auth.getCurrentUser().isEmailVerified()){
+                                if (auth.getCurrentUser().isEmailVerified()) {
                                     //check the type of user
                                     String userKey = auth.getCurrentUser().getUid().toString();
                                     databaseReference = firebaseFirestore.collection("users").document(userKey);
@@ -126,14 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                                                 //hide the progress bar
                                                 progressBar.setVisibility(View.INVISIBLE);
                                                 loginButton.setVisibility(View.VISIBLE);
-                                                forgotPasswordTextView.setVisibility(View.VISIBLE);
+                                                getHelp.setVisibility(View.VISIBLE);
 
                                                 //get the result
                                                 DocumentSnapshot snapshot = task.getResult();
 
                                                 //check if the user is blocked or pending
-                                                if(snapshot.get("status").toString().equals("blocked") || snapshot.get("status").toString().equals("pending"))
-                                                {
+                                                if (snapshot.get("status").toString().equals("blocked") || snapshot.get("status").toString().equals("pending")) {
                                                     Toast.makeText(getApplicationContext(), "Your status is not approved yet, wait for the approval from admin", Toast.LENGTH_LONG).show();
                                                     auth.signOut();
                                                     return;
@@ -166,19 +162,19 @@ public class LoginActivity extends AppCompatActivity {
                                             //hide the progress bar
                                             progressBar.setVisibility(View.INVISIBLE);
                                             loginButton.setVisibility(View.VISIBLE);
-                                            forgotPasswordTextView.setVisibility(View.VISIBLE);
+                                            getHelp.setVisibility(View.VISIBLE);
 
                                             //show message
                                             Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
-                                }
-                                else{
+                                } else {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     loginButton.setVisibility(View.VISIBLE);
-                                    forgotPasswordTextView.setVisibility(View.VISIBLE);
+                                    getHelp.setVisibility(View.VISIBLE);
                                     Toast.makeText(LoginActivity.this, "Please verify email to continue", Toast.LENGTH_SHORT).show();
-                            }}
+                                }
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -186,19 +182,19 @@ public class LoginActivity extends AppCompatActivity {
                             //hide the progress bar
                             progressBar.setVisibility(View.INVISIBLE);
                             loginButton.setVisibility(View.VISIBLE);
-                            forgotPasswordTextView.setVisibility(View.VISIBLE);
+                            getHelp.setVisibility(View.VISIBLE);
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
                     loginButton.setVisibility(View.VISIBLE);
-                    forgotPasswordTextView.setVisibility(View.VISIBLE);
+                    getHelp.setVisibility(View.VISIBLE);
                 }
             }
         });
 
-        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+        getHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
@@ -226,8 +222,7 @@ public class LoginActivity extends AppCompatActivity {
             emailEditText.requestFocus();
             return false;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-        {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Provide a correct email");
             emailEditText.requestFocus();
             return false;

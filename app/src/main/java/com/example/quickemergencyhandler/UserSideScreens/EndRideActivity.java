@@ -48,7 +48,7 @@ public class EndRideActivity extends AppCompatActivity {
                 String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()).toString();
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 String uniqueID = UUID.randomUUID().toString();
-                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride is completed, pay the amount to the driver, " + String.valueOf(cost) + " Rs." , "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
+                NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), userID, "You ride is completed, pay the amount to the driver, " + String.valueOf(cost) + " Rs.", "Date: " + currentDate + " ,Time: " + currentTime, 1, currentDate, currentTime);
                 firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
                 finish();
             }

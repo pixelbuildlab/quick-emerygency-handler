@@ -45,12 +45,9 @@ public class DriverCompletedRidesActivity extends AppCompatActivity {
         firebaseFirestore.collection("Booking").whereEqualTo("driverID", userKey).whereEqualTo("status", "completed").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
-                        for(DocumentSnapshot snapshot : task.getResult())
-                        {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
+                        for (DocumentSnapshot snapshot : task.getResult()) {
                             String date = snapshot.get("date").toString();
                             String time = snapshot.get("time").toString();
                             int cost = Integer.parseInt(snapshot.get("cost").toString());
@@ -59,9 +56,7 @@ public class DriverCompletedRidesActivity extends AppCompatActivity {
                         }
                         adapter = new AdapterLvDCompletedRides(getApplicationContext(), bookings);
                         listView.setAdapter(adapter);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "You have no completed rides", Toast.LENGTH_LONG).show();
                     }
                 }

@@ -48,8 +48,7 @@ public class AdapterAdminNotificationsRV extends RecyclerView.Adapter<AdapterAdm
         return items.size();
     }
 
-    public class ViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public class ViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title, subTitle;
         LinearLayout parentLayout;
 
@@ -62,8 +61,7 @@ public class AdapterAdminNotificationsRV extends RecyclerView.Adapter<AdapterAdm
 
         @Override
         public void onClick(View view) {
-            switch (view.getId())
-            {
+            switch (view.getId()) {
                 case R.id.parentNotificationLayout:
                     listener.onItemClick(getAdapterPosition());
                     break;

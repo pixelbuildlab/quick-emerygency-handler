@@ -61,15 +61,12 @@ public class PatientDetailActivity extends AppCompatActivity {
         emailTV.setText(email);
         cnicTV.setText(cnic);
         phoneTV.setText(phone);
-        statusTV.setText("Status:  "+status);
+        statusTV.setText("Status:  " + status);
 
-        if(status.equals("blocked"))
-        {
+        if (status.equals("blocked")) {
             statusTV.setTextColor(getResources().getColor(R.color.dark_red));
             blockButton.setText("Unblock User");
-        }
-        else
-        {
+        } else {
             updatedPatient = new PatientModel(id, name, email, cnic, phone, "blocked", userType, 0, 0, 0);
             statusTV.setTextColor(getResources().getColor(R.color.g_green));
             blockButton.setText("Block User");
@@ -82,18 +79,16 @@ public class PatientDetailActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 blockButton.setVisibility(View.INVISIBLE);
 
-                if(status.equals("blocked"))
-                {
+                if (status.equals("blocked")) {
                     updatedPatient = new PatientModel(id, name, email, cnic, phone, "approved", userType, 0, 0, 0);
 
                     databaseReference.document(id).set(updatedPatient).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 //change local status
                                 status = "approved";
-                                statusTV.setText("Status:  "+status);
+                                statusTV.setText("Status:  " + status);
                                 statusTV.setTextColor(getResources().getColor(R.color.g_green));
                                 blockButton.setText("Block User");
 
@@ -117,18 +112,16 @@ public class PatientDetailActivity extends AppCompatActivity {
                         }
                     });
                 }
-                if(status.equals("approved"))
-                {
+                if (status.equals("approved")) {
                     updatedPatient = new PatientModel(id, name, email, cnic, phone, "blocked", userType, 0, 0, 0);
 
                     databaseReference.document(id).set(updatedPatient).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 //change local status
                                 status = "blocked";
-                                statusTV.setText("Status:  "+status);
+                                statusTV.setText("Status:  " + status);
                                 statusTV.setTextColor(getResources().getColor(R.color.dark_red));
                                 blockButton.setText("Unblock User");
 

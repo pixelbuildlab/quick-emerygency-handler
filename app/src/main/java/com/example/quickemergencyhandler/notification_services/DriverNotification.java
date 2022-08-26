@@ -47,13 +47,11 @@ public class DriverNotification extends Service {
         firebaseFirestore.collection("notifications").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for(DocumentSnapshot snapshot : task.getResult())
-                {
-                    if(snapshot.get("to").toString().equals(firebaseAuth.getCurrentUser().getUid()) &&
-                            Integer.parseInt(snapshot.get("isRead").toString()) == 2)
-                    {
+                for (DocumentSnapshot snapshot : task.getResult()) {
+                    if (snapshot.get("to").toString().equals(firebaseAuth.getCurrentUser().getUid()) &&
+                            Integer.parseInt(snapshot.get("isRead").toString()) == 2) {
                         notificationID++;
-                        userNotification(snapshot.get("title").toString(), snapshot.get("subTitle").toString(),notificationID);
+                        userNotification(snapshot.get("title").toString(), snapshot.get("subTitle").toString(), notificationID);
                         String id = snapshot.get("notificationID").toString();
                         NotificationModel replaceModel = new NotificationModel(
                                 snapshot.get("notificationID").toString(),

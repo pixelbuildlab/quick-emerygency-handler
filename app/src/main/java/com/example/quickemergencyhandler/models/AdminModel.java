@@ -6,8 +6,7 @@ public class AdminModel {
     private int baseFare;
     private int perKmFare;
 
-    public AdminModel()
-    {
+    public AdminModel() {
         email = "";
         password = "";
         baseFare = 0;

@@ -39,8 +39,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = forgotEmailEditText.getText().toString().trim();
 
-                if(email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
-                {
+                if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     Toast.makeText(getApplicationContext(), "Enter a correct email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -55,12 +54,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.INVISIBLE);
                         forgotEmailEditText.setVisibility(View.VISIBLE);
                         sendLinkButton.setVisibility(View.VISIBLE);
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Check your email to reset password", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Connection failed, try again later", Toast.LENGTH_LONG).show();
                         }
                     }

@@ -89,12 +89,12 @@
         app:layout_constraintTop_toBottomOf="@id/passwordEditTextL"/>
 
     <TextView
-        android:id="@+id/forgotPassword"
+        android:id="@+id/getHelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginRight="60dp"
-        android:text="Forgot password?"
+        android:text="Unable to Login?"
         android:textAlignment="textEnd"
         android:textColor="@color/dark_red"
         android:textSize="18sp"
@@ -113,7 +113,7 @@
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgotPassword"/>
+        app:layout_constraintTop_toBottomOf="@id/getHelp"/>
 
     <TextView
         android:id="@+id/registerHere"

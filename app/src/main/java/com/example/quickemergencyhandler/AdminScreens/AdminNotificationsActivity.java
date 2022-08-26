@@ -50,8 +50,7 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         firebaseFirestore.collection("notifications").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     //hide the progress bar
                     progressBar.setVisibility(View.INVISIBLE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -60,10 +59,8 @@ public class AdminNotificationsActivity extends AppCompatActivity {
                     String title, subTitle, userID;
                     String notificationID;
                     int isRead;
-                    for(QueryDocumentSnapshot snapshot : task.getResult())
-                    {
-                        if(snapshot.get("to").toString().equals("admin"))
-                        {
+                    for (QueryDocumentSnapshot snapshot : task.getResult()) {
+                        if (snapshot.get("to").toString().equals("admin")) {
                             title = snapshot.get("title").toString();
                             subTitle = snapshot.get("subTitle").toString();
                             userID = snapshot.get("from").toString();
@@ -90,8 +87,7 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         });
     }
 
-    private void markAllNotificationsAsRead()
-    {
+    private void markAllNotificationsAsRead() {
         firebaseFirestore.collection("notifications").document().update("isRead", 1);
     }
 }

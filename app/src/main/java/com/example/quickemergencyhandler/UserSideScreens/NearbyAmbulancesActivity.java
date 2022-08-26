@@ -61,19 +61,17 @@ public class NearbyAmbulancesActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         listViewNearby.setVisibility(View.INVISIBLE);
 
-        firebaseFirestore.collection("users").whereEqualTo("userType","driver").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        firebaseFirestore.collection("users").whereEqualTo("userType", "driver").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     progressBar.setVisibility(View.INVISIBLE);
                     listViewNearby.setVisibility(View.VISIBLE);
 
                     double userLat, userLng, driverLat, driverLng;
                     userLat = userLatLng.latitude;
                     userLng = userLatLng.longitude;
-                    for(DocumentSnapshot snapshot : task.getResult())
-                    {
+                    for (DocumentSnapshot snapshot : task.getResult()) {
                         //calculate distance between driver and user
                         driverLat = Double.parseDouble(snapshot.get("lat").toString());
                         driverLng = Double.parseDouble(snapshot.get("lng").toString());
@@ -83,7 +81,7 @@ public class NearbyAmbulancesActivity extends AppCompatActivity {
                                 driverLat,
                                 driverLng,
                                 results);
-                        distanceInKm = results[0]/1000;
+                        distanceInKm = results[0] / 1000;
                         System.out.println("distance nearby activity: " + String.valueOf(distanceInKm));
 
                         //get the available status of driver
@@ -92,8 +90,7 @@ public class NearbyAmbulancesActivity extends AppCompatActivity {
                         features = (ArrayList<Integer>) snapshot.get("vehicleFeatures");
 
 
-                        if(distanceInKm < 20 && available)
-                        {
+                        if (distanceInKm < 20 && available) {
                             //fetch data of driver and add it to the nearby list
                             nearbyDrivers.add(new DriverModel(
                                     snapshot.get("id").toString(),

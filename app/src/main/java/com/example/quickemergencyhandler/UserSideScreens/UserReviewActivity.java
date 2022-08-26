@@ -55,10 +55,8 @@ public class UserReviewActivity extends AppCompatActivity {
         firebaseFirestore.collection("Rating").whereEqualTo("bookingID", bookingID).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful())
-                {
-                    if(task.getResult().size() > 0)
-                    {
+                if (task.isSuccessful()) {
+                    if (task.getResult().size() > 0) {
                         alreadyRatedTV.setVisibility(View.VISIBLE);
                         ratingBar.setVisibility(View.INVISIBLE);
                         submitButton.setVisibility(View.INVISIBLE);
@@ -72,16 +70,14 @@ public class UserReviewActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validation())
-                {
+                if (validation()) {
                     String comment = reviewET.getText().toString().trim();
                     float ratingValue = ratingBar.getRating();
                     Rating rating = new Rating(bookingID, userID, driverID, comment, ratingValue);
                     firebaseFirestore.collection("Rating").document(bookingID).set(rating).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
+                            if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Review submitted", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
@@ -98,15 +94,12 @@ public class UserReviewActivity extends AppCompatActivity {
 
     }
 
-    private boolean validation()
-    {
-        if(reviewET.getText().toString().trim().equals(""))
-        {
+    private boolean validation() {
+        if (reviewET.getText().toString().trim().equals("")) {
             Toast.makeText(getApplicationContext(), "Review field can't be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(reviewET.getText().toString().trim().length() < 6)
-        {
+        if (reviewET.getText().toString().trim().length() < 6) {
             Toast.makeText(getApplicationContext(), "Review too short", Toast.LENGTH_SHORT).show();
             return false;
         }

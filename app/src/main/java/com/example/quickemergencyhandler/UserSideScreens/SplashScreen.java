@@ -33,33 +33,26 @@ public class SplashScreen extends AppCompatActivity {
         int SPLASH_DISPLAY_LENGTH = 2000;
 
         //handler to close splash screen after 2 seconds
-        new Handler().postDelayed(new Runnable(){
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                if (userTypeInt==1){
-                    Intent mainIntent = new Intent(getApplicationContext(),DriverDashboardActivity.class);
+                if (userTypeInt == 1) {
+                    Intent mainIntent = new Intent(getApplicationContext(), DriverDashboardActivity.class);
                     mainIntent.putExtra("userKey", fetchedUserNodeKey);
                     startActivity(mainIntent);
                     finishAffinity();
-                }
-
-                else if (userTypeInt==2){
-                    Intent mainIntent = new Intent(getApplicationContext(),PatientDashboardActivity.class);
+                } else if (userTypeInt == 2) {
+                    Intent mainIntent = new Intent(getApplicationContext(), PatientDashboardActivity.class);
                     mainIntent.putExtra("userKey", fetchedUserNodeKey);
                     startActivity(mainIntent);
                     finishAffinity();
-                }
-
-                else if (userTypeInt==3){
+                } else if (userTypeInt == 3) {
                     Intent mainIntent = new Intent(getApplicationContext(), AdminDashboard.class);
                     mainIntent.putExtra("userKey", fetchedUserNodeKey);
                     startActivity(mainIntent);
                     finishAffinity();
-                }
-
-                else
-                {
+                } else {
                     Intent mainIntent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(mainIntent);
                     finishAffinity();

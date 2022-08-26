@@ -80,7 +80,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
     private double radiusInMeters = 0.02 * 1000.0; //20 meter
     private Handler mHandler;
     int v = 0;
-    Date d1,d2;
+    Date d1, d2;
     private LatLng latLng;
     private static long INTERAl = 10000000;
     private static long FAST_INTERVAL = 600000000;
@@ -103,7 +103,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
         nameTV = findViewById(R.id.nameUserActiveRide);
         vehicleNumberTV = findViewById(R.id.numberUserActiveRide);
         cancelBookingButton = findViewById(R.id.cancelButtonUserActiveRide);
-        homeButton=findViewById(R.id.returnHome);
+        homeButton = findViewById(R.id.returnHome);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         userKey = firebaseAuth.getCurrentUser().getUid();
@@ -114,20 +114,20 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.RECORD_AUDIO
                 ).withListener(new MultiplePermissionsListener() {
-            @Override
-            public void onPermissionsChecked(MultiplePermissionsReport report) {
-                if (mGoogleApiClient == null) {
-                    buildGoogleApiClient();
-                }
-            }
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (mGoogleApiClient == null) {
+                            buildGoogleApiClient();
+                        }
+                    }
 
-            @Override
-            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
-        }).check();
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+                }).check();
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in= new Intent(UserActiveRideActivity.this, PatientDashboardActivity.class);
+                Intent in = new Intent(UserActiveRideActivity.this, PatientDashboardActivity.class);
                 startActivity(in);
             }
         });
@@ -166,7 +166,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
     }
 
 
-        @Override
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -221,6 +221,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
     };
 
     boolean toastShown = false;
+
     private void loadMap() {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -236,10 +237,8 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                 firebaseFirestore.collection("Booking").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful())
-                        {
-                            for(DocumentSnapshot snapshot : task.getResult())
-                            {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot snapshot : task.getResult()) {
                                 String fetchedDate = snapshot.get("date").toString();
                                 try {
                                     d2 = dateFormat.parse(fetchedDate);
@@ -247,12 +246,11 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                     e.printStackTrace();
                                 }
 
-                                if(d1.compareTo(d2) == 0 &&
+                                if (d1.compareTo(d2) == 0 &&
                                         FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("userID").toString())
                                         &&
                                         snapshot.get("status").toString().equals("accepted")
-                                )
-                                {
+                                ) {
                                     rideFound = true;
                                     driverKey = snapshot.get("driverID").toString();
 
@@ -260,8 +258,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                     firebaseFirestore.collection("users").document(driverKey).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
-                                            if(task.isSuccessful())
-                                            {
+                                            if (task.isSuccessful()) {
                                                 DocumentSnapshot snapshot1 = task1.getResult();
                                                 nameTV.setText("Driver Name: " + snapshot1.get("name").toString());
                                                 vehicleNumberTV.setText("Vehicle Number: " + snapshot1.get("vehicleNumber").toString());
@@ -273,12 +270,11 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> driverTask) {
                                             if (driverTask.isSuccessful()) {
-                                                if(d1.compareTo(d2) == 0 &&
+                                                if (d1.compareTo(d2) == 0 &&
                                                         FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("userID").toString())
                                                         &&
                                                         snapshot.get("status").toString().equals("accepted")
-                                                )
-                                                {
+                                                ) {
                                                     cancelBookingButton.setOnClickListener(new View.OnClickListener() {
                                                         @Override
                                                         public void onClick(View view) {
@@ -302,7 +298,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                                             String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                                                             String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                                                             String uniqueID = UUID.randomUUID().toString();
-                                                            NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), snapshot.get("driverID").toString(), "You ride has been cancelled" , "Date: " + currentDate + " ,Time: " + currentTime, 2, currentDate, currentTime);
+                                                            NotificationModel notificationModel = new NotificationModel(uniqueID, firebaseAuth.getCurrentUser().getUid(), snapshot.get("driverID").toString(), "You ride has been cancelled", "Date: " + currentDate + " ,Time: " + currentTime, 2, currentDate, currentTime);
                                                             firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
 
                                                             Toast.makeText(getApplicationContext(), "The ride has been cancelled", Toast.LENGTH_LONG).show();
@@ -381,8 +377,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                     });
                                 }
                             }
-                            if(!rideFound && !toastShown)
-                            {
+                            if (!rideFound && !toastShown) {
                                 toastShown = true;
                                 Toast.makeText(getApplicationContext(), "You have no active ride currently", Toast.LENGTH_LONG).show();
                                 cardView.setVisibility(View.INVISIBLE);
