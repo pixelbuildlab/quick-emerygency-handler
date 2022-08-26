@@ -78,7 +78,11 @@ public class NearbyAmbulancesActivity extends AppCompatActivity {
                         driverLat = Double.parseDouble(snapshot.get("lat").toString());
                         driverLng = Double.parseDouble(snapshot.get("lng").toString());
                         float[] results = new float[1];
-                        Location.distanceBetween(userLat, userLng, driverLat, driverLng, results);
+                        Location.distanceBetween(userLat,
+                                userLng,
+                                driverLat,
+                                driverLng,
+                                results);
                         distanceInKm = results[0]/1000;
                         System.out.println("distance nearby activity: " + String.valueOf(distanceInKm));
 

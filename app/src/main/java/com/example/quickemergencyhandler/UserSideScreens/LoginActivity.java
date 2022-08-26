@@ -114,62 +114,70 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                //check the type of user
-                                String userKey = auth.getCurrentUser().getUid().toString();
-                                databaseReference = firebaseFirestore.collection("users").document(userKey);
-                                databaseReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
+                                if (auth.getCurrentUser().isEmailVerified()){
+                                    //check the type of user
+                                    String userKey = auth.getCurrentUser().getUid().toString();
+                                    databaseReference = firebaseFirestore.collection("users").document(userKey);
+                                    databaseReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                //hide the progress bar
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                loginButton.setVisibility(View.VISIBLE);
+                                                forgotPasswordTextView.setVisibility(View.VISIBLE);
+
+                                                //get the result
+                                                DocumentSnapshot snapshot = task.getResult();
+
+                                                //check if the user is blocked or pending
+                                                if(snapshot.get("status").toString().equals("blocked") || snapshot.get("status").toString().equals("pending"))
+                                                {
+                                                    Toast.makeText(getApplicationContext(), "Your status is not approved yet, wait for the approval from admin", Toast.LENGTH_LONG).show();
+                                                    auth.signOut();
+                                                    return;
+                                                }
+
+                                                if (snapshot.get("userType").toString().equals("driver")) {
+                                                    editor.putInt(userType, 1);
+                                                    editor.putString(userNodeKey, userKey);
+                                                    editor.apply();
+                                                    Intent intent = new Intent(LoginActivity.this, DriverDashboardActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+
+                                                } else if (snapshot.get("userType").toString().equals("patient")) {
+                                                    editor.putInt(userType, 2);
+                                                    editor.putString(userNodeKey, userKey);
+                                                    editor.apply();
+                                                    Intent intent = new Intent(LoginActivity.this, PatientDashboardActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+
+                                                    Toast.makeText(getApplicationContext(), "User not found, check the credentials or connection", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
                                             //hide the progress bar
                                             progressBar.setVisibility(View.INVISIBLE);
                                             loginButton.setVisibility(View.VISIBLE);
                                             forgotPasswordTextView.setVisibility(View.VISIBLE);
 
-                                            //get the result
-                                            DocumentSnapshot snapshot = task.getResult();
-
-                                            //check if the user is blocked or pending
-                                            if(snapshot.get("status").toString().equals("blocked") || snapshot.get("status").toString().equals("pending"))
-                                            {
-                                                Toast.makeText(getApplicationContext(), "Your status is not approved yet, wait for the approval from admin", Toast.LENGTH_LONG).show();
-                                                auth.signOut();
-                                                return;
-                                            }
-
-                                            if (snapshot.get("userType").toString().equals("driver")) {
-                                                editor.putInt(userType, 1);
-                                                editor.putString(userNodeKey, userKey);
-                                                editor.apply();
-                                                Intent intent = new Intent(LoginActivity.this, DriverDashboardActivity.class);
-                                                startActivity(intent);
-                                                finish();
-
-                                            } else if (snapshot.get("userType").toString().equals("patient")) {
-                                                editor.putInt(userType, 2);
-                                                editor.putString(userNodeKey, userKey);
-                                                editor.apply();
-                                                Intent intent = new Intent(LoginActivity.this, PatientDashboardActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            } else {
-                                                Toast.makeText(getApplicationContext(), "User not found, check the credentials or connection", Toast.LENGTH_SHORT).show();
-                                            }
+                                            //show message
+                                            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                                         }
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        //hide the progress bar
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        loginButton.setVisibility(View.VISIBLE);
-                                        forgotPasswordTextView.setVisibility(View.VISIBLE);
-
-                                        //show message
-                                        Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
+                                    });
+                                }
+                                else{
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    loginButton.setVisibility(View.VISIBLE);
+                                    forgotPasswordTextView.setVisibility(View.VISIBLE);
+                                    Toast.makeText(LoginActivity.this, "Please verify email to continue", Toast.LENGTH_SHORT).show();
+                            }}
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

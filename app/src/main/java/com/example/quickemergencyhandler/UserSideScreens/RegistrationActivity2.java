@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
 
 public class RegistrationActivity2 extends AppCompatActivity {
@@ -162,22 +163,25 @@ public class RegistrationActivity2 extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             //hide the progress bar
-                                                            progressBar.setVisibility(View.INVISIBLE);
-                                                            registerVehicleButton.setVisibility(View.VISIBLE);
+                                                            if (task.isSuccessful()){
+                                                                progressBar.setVisibility(View.INVISIBLE);
+                                                                registerVehicleButton.setVisibility(View.VISIBLE);
 
-                                                            Toast.makeText(getApplicationContext(), "Signup successful", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getApplicationContext(), "Signup successful", Toast.LENGTH_SHORT).show();
 
-                                                            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                                                            String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                                                                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                                                                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
-                                                            //add notification to table
-                                                            String uniqueID = UUID.randomUUID().toString();
-                                                            NotificationModel notificationModel = new NotificationModel(uniqueID, userKey, "admin", name + " just created an account", email, 3, currentDate, currentTime);
-                                                            firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
+                                                                //add notification to table
+                                                                String uniqueID = UUID.randomUUID().toString();
+                                                                NotificationModel notificationModel = new NotificationModel(uniqueID, userKey, "admin", name + " just created an account", email, 3, currentDate, currentTime);
+                                                                firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
+                                                                sendVerifyEmail();
+                                                                finishAffinity();
+                                                                startActivity(new Intent(RegistrationActivity2.this, LoginActivity.class));
 
-                                                            //move to next screen
-                                                            finishAffinity();
-                                                            startActivity(new Intent(RegistrationActivity2.this, LoginActivity.class));
+                                                            }
+
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                         @Override
@@ -218,6 +222,23 @@ public class RegistrationActivity2 extends AppCompatActivity {
                     registerVehicleButton.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Check all input fields", Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            private void sendVerifyEmail() {
+                Objects.requireNonNull(auth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(RegistrationActivity2.this, "Please Verify your email to continue.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(RegistrationActivity2.this, "Error connecting to server.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }

@@ -153,7 +153,7 @@ public class DriverDetailActivity extends AppCompatActivity {
                 }
                 if(selectedSpinnerItem.equals("blocked"))
                 {
-                    driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "blocked", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, available);
+                    driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "blocked", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, false);
 
                     databaseReference.document(id).set(driverModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -221,7 +221,7 @@ public class DriverDetailActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "pending", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, available);
+                    driverModel = new DriverModel(id, name, email, cnic, phone, imageUrl, "pending", ambulanceNo, ambulanceCopyNo, ambulanceModel, features, userType, lat, lng, false);
 
                     databaseReference.document(id).set(driverModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

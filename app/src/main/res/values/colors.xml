@@ -12,4 +12,5 @@
     <color name="g_red">#DB3236</color>
     <color name="g_blue">#4885ED</color>
     <color name="g_yellow">#F4B400</color>
+    <color name="g_grey">@android:color/darker_gray</color>
 </resources>

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -202,10 +203,18 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot snapshot = task.getResult();
                 baseFare = Integer.parseInt(snapshot.get("baseFare").toString());
+                Log.d("Mylogs, basefare", String.valueOf(baseFare));
                 perKmFare = Integer.parseInt(snapshot.get("perKmFare").toString());
+                Log.d("Mylogs, perKMfare", String.valueOf(perKmFare));
+
                 estimatedCost = (int) ((distanceInKm*perKmFare)+baseFare);
+                Log.d("Mylogs, distanceInKM", String.valueOf(distanceInKm));
+
+                Log.d("Mylogs, estimated", String.valueOf(estimatedCost));
                 int valueWithoutBaseFare = (int) (distanceInKm*perKmFare);
                 int finalValue = valueWithoutBaseFare + baseFare;
+                Log.d("Mylogs, valuewithoutbaseFare", String.valueOf(valueWithoutBaseFare));
+                Log.d("Mylogs, finalValue", String.valueOf(finalValue));
                 estimatedCostTV.setText("Estimated Cost: Rs " + String.valueOf(finalValue));
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -227,8 +236,11 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         mMarkerPoints.add(driverLatLng);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(userLatLng);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        markerOptions.title("User");
         MarkerOptions markerOptions1 = new MarkerOptions();
         markerOptions1.position(driverLatLng);
+        markerOptions1.title("Driver");
         googleMap.addMarker(markerOptions);
         googleMap.addMarker(markerOptions1);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(driverLat, driverLng), 15));

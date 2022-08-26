@@ -1,5 +1,6 @@
 package com.example.quickemergencyhandler.AdminScreens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quickemergencyhandler.R;
 import com.example.quickemergencyhandler.models.AdminModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AdminLogin extends AppCompatActivity {
@@ -56,14 +61,6 @@ public class AdminLogin extends AppCompatActivity {
         adminLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editor.putInt(userType, 3);
-                editor.putString(userNodeKey, "appambulance");
-                editor.apply();
-                Intent intent = new Intent(AdminLogin.this, AdminDashboard.class);
-                startActivity(intent);
-                finish();
-            }
-/*
 
                 adminLoginButton.setVisibility(View.GONE);
                 loginAsUser.setVisibility(View.GONE);
@@ -113,7 +110,7 @@ public class AdminLogin extends AppCompatActivity {
 
 
 
-*/
+
 
         });
     }

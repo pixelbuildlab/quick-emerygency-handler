@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
 
 public class RegistrationActivity1 extends AppCompatActivity {
@@ -167,22 +169,28 @@ public class RegistrationActivity1 extends AppCompatActivity {
                                     firebaseFirestore.collection("users").document(auth.getCurrentUser().getUid()).set(patientModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                //hide the progress bar
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                registerButton.setVisibility(View.VISIBLE);
+                                                loginInsteadTextView.setVisibility(View.VISIBLE);
+
+
+                                                //send notification in table
+                                                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                                                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                                                String uniqueID = UUID.randomUUID().toString();
+                                                NotificationModel notificationModel = new NotificationModel(uniqueID, auth.getCurrentUser().getUid().toString(), "admin", name + " just created an account", email, 3, currentDate, currentTime);
+                                                firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
+                                                Toast.makeText(getApplicationContext(), "User created in database", Toast.LENGTH_SHORT).show();
+                                                sendVerifyEmail();
+                                            }
                                             //hide the progress bar
-                                            progressBar.setVisibility(View.INVISIBLE);
-                                            registerButton.setVisibility(View.VISIBLE);
-                                            loginInsteadTextView.setVisibility(View.VISIBLE);
 
-                                            //send notification in table
-                                            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                                            String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                                            String uniqueID = UUID.randomUUID().toString();
-                                            NotificationModel notificationModel = new NotificationModel(uniqueID, auth.getCurrentUser().getUid().toString(), "admin", name + " just created an account", email, 3, currentDate, currentTime);
-                                            firebaseFirestore.collection("notifications").document(uniqueID).set(notificationModel);
-
-
-                                            Toast.makeText(getApplicationContext(), "User created in database", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(getApplicationContext(), "User created in database", Toast.LENGTH_SHORT).show();
                                             finishAffinity();
-                                            startActivity(new Intent(RegistrationActivity1.this, PatientDashboardActivity.class));
+
+                                            startActivity(new Intent(RegistrationActivity1.this, LoginActivity.class));
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
@@ -210,6 +218,23 @@ public class RegistrationActivity1 extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void sendVerifyEmail() {
+        Objects.requireNonNull(auth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(RegistrationActivity1.this, "Please Verify your email to continue.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistrationActivity1.this, "Error connecting to server.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -261,7 +286,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
             nameEditText.requestFocus();
             return false;
         }
-        if(email.isEmpty() || email.length()<7 || !email.contains("@"))
+        if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
             emailEditText.setError("Provide a correct email");
             emailEditText.requestFocus();
@@ -282,6 +307,12 @@ public class RegistrationActivity1 extends AppCompatActivity {
         if(cnic.isEmpty() || cnic.length()<13)
         {
             cnicEditText.setError("CNIC not correct");
+            cnicEditText.requestFocus();
+            return false;
+        }
+        else if( cnic.length()>13)
+        {
+            cnicEditText.setError("Provide 13 Digit CNIC without dashes");
             cnicEditText.requestFocus();
             return false;
         }

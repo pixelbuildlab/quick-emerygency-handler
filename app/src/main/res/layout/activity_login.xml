@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_email"
         android:drawableTint="@color/dark_red"
+        android:inputType="textEmailAddress"
         android:drawablePadding="3dp"
         android:hint="Enter your email"
         android:textColor="@color/black"

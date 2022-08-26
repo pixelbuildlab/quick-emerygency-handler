@@ -170,6 +170,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/dark_red"
                 android:elevation="8dp"
+                android:clickable="false"
                 app:cardCornerRadius="12dp">
 
                 <LinearLayout
