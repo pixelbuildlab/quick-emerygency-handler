@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -222,6 +223,12 @@ public class LoginActivity extends AppCompatActivity {
         //validate input
         if (email.isEmpty()) {
             emailEditText.setError("Email can't be empty");
+            emailEditText.requestFocus();
+            return false;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            emailEditText.setError("Provide a correct email");
             emailEditText.requestFocus();
             return false;
         }

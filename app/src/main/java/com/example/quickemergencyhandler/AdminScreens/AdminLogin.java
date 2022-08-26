@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ public class AdminLogin extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore;
     AdminModel adminDetails;
-
+    ImageView showAdminPassword;
     TextView loginAsUser;
     Button adminLoginButton;
     EditText emailEditText, passwordEditText;
@@ -46,6 +50,7 @@ public class AdminLogin extends AppCompatActivity {
         loginAsUser = (TextView) findViewById(R.id.loginAsUser);
         adminLoginButton = (Button) findViewById(R.id.loginAdminButton);
         emailEditText = (EditText) findViewById(R.id.adminIdEditText);
+        showAdminPassword= findViewById(R.id.showAdminPassword);
         passwordEditText = (EditText) findViewById(R.id.adminPasswordEditText);
         progressBar = (ProgressBar) findViewById(R.id.adminLoginProgressBar);
         sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -57,11 +62,25 @@ public class AdminLogin extends AppCompatActivity {
                 finish();
             }
         });
+        showAdminPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(passwordEditText.getTransformationMethod() == HideReturnsTransformationMethod.getInstance())
+                {
+                    passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                else
+                {
+                    passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
 
         adminLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                boolean validation = extractInputAndValidate();
+                if (validation) {
                 adminLoginButton.setVisibility(View.GONE);
                 loginAsUser.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
@@ -106,12 +125,46 @@ public class AdminLogin extends AppCompatActivity {
                     }
                 });
             }
+                else {
+                   adminLoginButton.setVisibility(View.VISIBLE);
+                    loginAsUser.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
 
 
 
 
 
 
-        });
+        }
+
+
+            private boolean extractInputAndValidate() {
+
+                    //extract input
+                  String  email = emailEditText.getText().toString();
+                   String password = passwordEditText.getText().toString();
+
+                    //validate input
+                    if (email.isEmpty()) {
+                        emailEditText.setError("Email can't be empty");
+                        emailEditText.requestFocus();
+                        return false;
+                    }
+                    if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                    {
+                        emailEditText.setError("Provide a correct email");
+                        emailEditText.requestFocus();
+                        return false;
+                    }
+                    if (password.isEmpty()) {
+                        passwordEditText.setError("Password can't be empty");
+                        passwordEditText.requestFocus();
+                        return false;
+                    }
+                    return true;
+                }
+
+            });
     }
 }
