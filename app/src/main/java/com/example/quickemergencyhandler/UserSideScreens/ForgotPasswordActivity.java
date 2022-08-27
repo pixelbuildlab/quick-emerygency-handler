@@ -39,8 +39,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = forgotEmailEditText.getText().toString().trim();
 
-                if (email.equals("") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(getApplicationContext(), "Enter a correct email address", Toast.LENGTH_SHORT).show();
+                if (email.equals("")) {
+                    forgotEmailEditText.setError("Email field cannot be empty");
+                    forgotEmailEditText.requestFocus();
+                    return;
+                }
+                else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    forgotEmailEditText.setError("Provide a correct email");
+                    forgotEmailEditText.requestFocus();
                     return;
                 }
 

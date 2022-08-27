@@ -87,7 +87,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:03013073514"));
-                startActivity(callIntent);
+                try {
+                    startActivity(callIntent);
+                } catch ( Exception e){
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

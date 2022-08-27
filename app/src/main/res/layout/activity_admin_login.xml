@@ -29,7 +29,7 @@
         android:drawableTint="@color/dark_red"
         android:drawablePadding="3dp"
         android:inputType="textEmailAddress"
-        android:hint="Enter admin ID"
+        android:hint="Enter admin email"
         android:textColor="@color/black"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="50dp"
