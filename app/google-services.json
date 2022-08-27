@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:254435422656:android:0680611a8e150611bb9825",
+        "mobilesdk_app_id": "1:254435422656:android:8ceb01de49a01b69bb9825",
         "android_client_info": {
-          "package_name": "com.example.ambulancebookingapp"
+          "package_name": "com.example.quickemergencyhandler"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "254435422656-ol8v0q1rfthottude6dvet10js9a3b69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quickemergencyhandler",
+            "certificate_hash": "bb652ceefdf0beb4800080fed541267e2ffba761"
+          }
+        },
         {
           "client_id": "254435422656-vtf86f595pvn1j7ta3jee22he661mmrk.apps.googleusercontent.com",
           "client_type": 3

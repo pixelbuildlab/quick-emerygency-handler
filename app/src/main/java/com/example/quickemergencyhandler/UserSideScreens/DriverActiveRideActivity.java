@@ -436,7 +436,8 @@ public class DriverActiveRideActivity extends AppCompatActivity implements OnMap
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
 
         // Key
-        String key = "key=AIzaSyByVdzDd2TZwqXqFxfoJRPgJJJviizwGdM";
+         String key = "key=AIzaSyD6dUAxQBXBwQx-t0ChCaHbHfXwNNANDCo";
+         //String key = "key=AIzaSyByVdzDd2TZwqXqFxfoJRPgJJJviizwGdM";
 
         // Building the parameters to the web service
         String parameters = str_origin + "&" + str_dest + "&" + key;
