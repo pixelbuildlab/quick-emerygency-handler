@@ -226,8 +226,8 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         this.googleMap = googleMap;
         LatLng userLatLng = new LatLng(userLat, userLng);
         LatLng driverLatLng = new LatLng(driverLat, driverLng);
-        mOrigin = new LatLng(userLatLng.latitude, userLatLng.longitude);
-        mDestination = new LatLng(driverLatLng.latitude, driverLatLng.longitude);
+        mOrigin  = new LatLng(driverLatLng.latitude, driverLatLng.longitude);
+        mDestination = new LatLng(userLatLng.latitude, userLatLng.longitude);
         mMarkerPoints.add(userLatLng);
         mMarkerPoints.add(driverLatLng);
         MarkerOptions markerOptions = new MarkerOptions();
@@ -239,7 +239,7 @@ public class ConfirmBookingActivity extends FragmentActivity implements OnMapRea
         markerOptions1.title("Driver");
         googleMap.addMarker(markerOptions);
         googleMap.addMarker(markerOptions1);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(driverLat, driverLng), 15));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(driverLat, driverLng), 13));
         drawRoute();
     }
 
