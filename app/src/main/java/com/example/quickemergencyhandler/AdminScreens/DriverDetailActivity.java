@@ -251,22 +251,22 @@ public class DriverDetailActivity extends AppCompatActivity {
     }
 
     public String getFeature() {
-        String f = " ";
+        String feature = " ";
         for (int i = 0; i < features.size(); i++) {
 
             if (String.valueOf(features.get(i)).equals("1")) {
-                f = "Stretcher";
+                feature = "Stretcher ";
             } else if (String.valueOf(features.get(i)).equals("2")) {
-                f = f + "  Drip";
+                feature = feature + "| Drip ";
             } else if (String.valueOf(features.get(i)).equals("3")) {
-                f = f + " Oxygen Mask";
+                feature = feature + "| Oxygen Mask ";
             } else if (String.valueOf(features.get(i)).equals("4")) {
-                f = f + " Nurse ";
+                feature = feature + "| Doctor/Nurse";
             }
 
         }
         Log.d("mylogs", String.valueOf(features.size()));
-        return f;
+        return feature;
     }
 }
 

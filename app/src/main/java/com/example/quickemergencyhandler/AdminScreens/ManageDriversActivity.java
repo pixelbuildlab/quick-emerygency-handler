@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -92,6 +93,7 @@ public class ManageDriversActivity extends AppCompatActivity {
                         lat = Double.parseDouble(document.get("lat").toString());
                         lng = Double.parseDouble(document.get("lng").toString());
                         available = Boolean.parseBoolean(document.get("available").toString());
+
                         items.add(new DriverModel(id, name, email, cnic, phone, imageUrl, status, vehicleNumber, vehicleCopyNumber, vehicleModel, features, userType, lat, lng, available));
                     }
 
@@ -110,10 +112,14 @@ public class ManageDriversActivity extends AppCompatActivity {
                             intent.putExtra("aNo", items.get(position).getVehicleNumber());
                             intent.putExtra("aCopyNo", items.get(position).getVehicleCopyNumber());
                             intent.putExtra("aModel", items.get(position).getVehicleModel());
-                            intent.putIntegerArrayListExtra("features", features);
+                            intent.putIntegerArrayListExtra("features", items.get(position).getVehicleFeatures());
                             intent.putExtra("lat", lat);
                             intent.putExtra("lng", lng);
                             intent.putExtra("available", available);
+
+                            Log.d("mylog1",items.get(position).getVehicleFeatures().toString());
+                            Log.d("mylogall",features.toString());
+
                             startActivity(intent);
                         }
                     });
