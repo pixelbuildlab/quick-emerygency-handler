@@ -19,7 +19,7 @@
         android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quick Emergency \n Handler"
+        android:text="Quick Emergency Handler"
         android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="28sp"

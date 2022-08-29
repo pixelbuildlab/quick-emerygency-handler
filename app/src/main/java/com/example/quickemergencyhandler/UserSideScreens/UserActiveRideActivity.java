@@ -234,7 +234,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                firebaseFirestore.collection("Booking").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                firebaseFirestore.collection("Booking").whereEqualTo("status", "accepted").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -245,12 +245,16 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+                                if (d1.compareTo(d2) == 0){
 
+                                    Log.d("condition d1 d2","true");
+                                }
                                 if (d1.compareTo(d2) == 0 &&
                                         FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("userID").toString())
                                         &&
                                         snapshot.get("status").toString().equals("accepted")
                                 ) {
+
                                     rideFound = true;
                                     driverKey = snapshot.get("driverID").toString();
 
@@ -269,7 +273,10 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                     firebaseFirestore.collection("Booking").whereEqualTo("driverID", driverKey).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<QuerySnapshot> driverTask) {
+
                                             if (driverTask.isSuccessful()) {
+
+
                                                 if (d1.compareTo(d2) == 0 &&
                                                         FirebaseAuth.getInstance().getCurrentUser().getUid().equals(snapshot.get("userID").toString())
                                                         &&
@@ -308,7 +315,6 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                                             startActivity(intent2);
                                                         }
                                                     });
-
                                                     for (DocumentSnapshot snapshot : driverTask.getResult()) {
                                                         dlat = Double.parseDouble(snapshot.get("driverLat").toString());
                                                         dLng = Double.parseDouble(snapshot.get("driverLng").toString());
@@ -318,7 +324,7 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                                         if (driverMarker != null) {
                                                             driverMarker.remove();
                                                             hideMarker = false;
-                                                            //currentLocationMarker.setVisible(false);
+                                                           // currentLocationMarker.setVisible(false);
                                                         } else {
                                                             hideMarker = true;
                                                         }
@@ -362,8 +368,12 @@ public class UserActiveRideActivity extends AppCompatActivity implements
                                                         markerOptions.title("Driver Location");
                                                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                                                         driverMarker = mMap.addMarker(markerOptions);
-                                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dlat, dLng), 20));
+                                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dlat, dLng), 15));
                                                     }
+                                                }
+                                                else{
+                                                    System.out.println("condition out " + driverTask.getResult());
+                                                  //  Toast.makeText(UserActiveRideActivity.this, "Out of condition", Toast.LENGTH_SHORT).show();
                                                 }
                                             } else {
                                                 System.out.println("record not found: " + driverTask.getResult());
