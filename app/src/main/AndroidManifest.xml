@@ -18,66 +18,87 @@
         android:theme="@style/Theme.AmbulanceBookingApp">
         <activity
             android:name=".UserSideScreens.VerifyEmailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".AdminScreens.AdminComplaintsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverReviewsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.UserReviewActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.PatientHistoryActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.UserActiveRideActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.AdminAllRidesActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.PatientProfileActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverCompletedRidesActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.EndRideActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverActiveRideActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverNotificationDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverNotificationsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.ConfirmBookingActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.AdminSettingsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.AdminNotificationsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.PatientDashboardActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.DriverDashboardActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.NearbyAmbulancesActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <meta-data
@@ -89,33 +110,43 @@
 
         <activity
             android:name=".UserSideScreens.SelectLocationActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.DriverDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.ManageDriversActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.PatientDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.ManagePatientsActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.AdminDashboard"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".AdminScreens.AdminLogin"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.RegistrationActivity2"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.RegistrationActivity1"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".UserSideScreens.SplashScreen"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
